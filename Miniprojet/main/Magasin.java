@@ -27,7 +27,8 @@ public class Magasin {
     }
 
     public String afficheArticle(String filtre){
-        return null;
+        String res = "";
+        return "";
     }
 
     public ArrayList<Location> afficheLocation(){
