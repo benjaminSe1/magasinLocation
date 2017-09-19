@@ -1,8 +1,10 @@
 package tests;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import articles.Article;
+import articles.ArticleComparator;
 
 public class ArticleTest {
 
@@ -12,6 +14,13 @@ public class ArticleTest {
         Article a3 = new Article("ref3", "marque3", "modele3", 3.0, 3);
         Article a4 = new Article("ref4", "marque4", "modele4", 4.0, 4);
         ArrayList<Article> articles = new ArrayList<>();
+        articles.add(a1);
+        articles.add(a2);
+        articles.add(a3);
+        articles.add(a4);
+
+        articles.sort(new ArticleComparator("refDecroiss"));
+        System.out.println(articles.toString());
     }
 
 }

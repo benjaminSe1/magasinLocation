@@ -6,4 +6,7 @@ package articles;
 public class TableAlite extends MobilierMedical {
     private int nbRoulette;
 
+    public TableAlite(String reference, String marque, String modele, double prix_j, int nbDispo) {
+        super(reference, marque, modele, prix_j, nbDispo);
+    }
 }

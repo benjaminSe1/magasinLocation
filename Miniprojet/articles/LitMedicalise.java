@@ -6,4 +6,7 @@ package articles;
 public class LitMedicalise extends MobilierMedical{
     private boolean isElectric;
 
+    public LitMedicalise(String reference, String marque, String modele, double prix_j, int nbDispo) {
+        super(reference, marque, modele, prix_j, nbDispo);
+    }
 }
