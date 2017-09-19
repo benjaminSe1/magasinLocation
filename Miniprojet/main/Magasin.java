@@ -31,7 +31,11 @@ public class Magasin {
         return "";
     }
 
-    public ArrayList<Location> afficheLocation(){
-        return null;
+    public void afficheLocation(Client client){
+        client.afficheLocation();
+    }
+
+    public void archive(Location location, Client client, Double montant){
+
     }
 }

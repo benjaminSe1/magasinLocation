@@ -23,4 +23,8 @@ public class Location {
     public void rend(){
 
     }
+
+    public String toString(){
+        return "Date de début : " + dateDebut + "\nDate de fin : " + dateFin + "\nListe des articles loués : " + listeArticleLoues;
+    }
 }
