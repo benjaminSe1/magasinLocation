@@ -9,11 +9,17 @@ import articles.Article;
  */
 public class Magasin {
     private String nom;
-    private ArrayList<Article> listeArticleDispo;
+    private ArrayList<Article> articleDispos;
+    private Archive archive;
+    private ArrayList<Location> locations;
+    private ArrayList<Client> clients;
 
-    public Magasin(String nom, ArrayList<Article> listeArticleDispo) {
+    public Magasin(String nom, ArrayList<Article> articleDispos, Archive archive, ArrayList<Location> locations, ArrayList<Client> clients) {
         this.nom = nom;
-        this.listeArticleDispo = listeArticleDispo;
+        this.articleDispos = articleDispos;
+        this.archive = archive;
+        this.locations = locations;
+        this.clients = clients;
     }
 
     public void loue(){

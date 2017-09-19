@@ -11,11 +11,13 @@ public class Location {
     private String dateDebut;
     private String dateFin;
     private ArrayList<Article> listeArticleLoues;
+    private Client client;
 
-    public Location(String dateDebut, String dateFin, ArrayList<Article> listeArticleLoues) {
+    public Location(String dateDebut, String dateFin, ArrayList<Article> listeArticleLoues, Client client) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.listeArticleLoues = listeArticleLoues;
+        this.client = client;
     }
 
     public void rend(){
