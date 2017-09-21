@@ -30,8 +30,6 @@ public class Client {
 
     public void afficheLocation(){
         System.out.println("Client : " + this.nom + this.prenom);
-        for(Location l : locations){
-            System.out.println("Locations : " + l.toString());
-        }
+        System.out.println("Locations : " + locations.toString());
     }
 }

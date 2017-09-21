@@ -21,7 +21,7 @@ public class Article {
     }
 
     public String toString(){
-        return "Article ref : " + this.reference + " marque : " + this.marque + " prix/jour" + this.prix_j + " nombre d'articles disponibles : " + this.nbDispo;
+        return "Article ref : " + this.reference + ", Marque : " + this.marque + ", Prix/jour" + this.prix_j + ", Nombre d'articles disponibles : " + this.nbDispo;
     }
 
     public String getReference() {

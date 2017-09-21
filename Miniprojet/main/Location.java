@@ -10,13 +10,13 @@ import articles.Article;
 public class Location {
     private String dateDebut;
     private String dateFin;
-    private ArrayList<Article> listeArticleLoues;
+    private ArrayList<Article> articles;
     private Client client;
 
-    public Location(String dateDebut, String dateFin, ArrayList<Article> listeArticleLoues, Client client) {
+    public Location(String dateDebut, String dateFin, ArrayList<Article> articles, Client client) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.listeArticleLoues = listeArticleLoues;
+        this.articles = articles;
         this.client = client;
     }
 
@@ -25,6 +25,11 @@ public class Location {
     }
 
     public String toString(){
-        return "Date de début : " + dateDebut + "\nDate de fin : " + dateFin + "\nListe des articles loués : " + listeArticleLoues;
+        String s = "";
+        s = "\nDate de début : " + dateDebut + " Date de fin : " + dateFin + "\nListe des articles loués : ";
+        for(Article a : articles){
+            s += a.toString();
+        }
+        return s;
     }
 }
