@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import articles.Article;
 
@@ -10,13 +11,13 @@ import articles.Article;
 public class Location {
     private String dateDebut;
     private String dateFin;
-    private ArrayList<Article> listeArticleLoues;
+    private HashMap<Article, Integer> articles;
     private Client client;
 
-    public Location(String dateDebut, String dateFin, ArrayList<Article> listeArticleLoues, Client client) {
+    public Location(String dateDebut, String dateFin, HashMap<Article, Integer> articles, Client client) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
-        this.listeArticleLoues = listeArticleLoues;
+        this.articles = articles;
         this.client = client;
     }
 
@@ -25,6 +26,6 @@ public class Location {
     }
 
     public String toString(){
-        return "Date de début : " + dateDebut + "\nDate de fin : " + dateFin + "\nListe des articles loués : " + listeArticleLoues;
+        return "Date de début : " + dateDebut + "\nDate de fin : " + dateFin + "\nListe des articles loués : " + articles;
     }
 }

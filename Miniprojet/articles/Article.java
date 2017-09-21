@@ -47,4 +47,13 @@ public class Article {
     public boolean equals(Article a){
         return this.reference==a.reference;
     }
+
+    public boolean decrementeDispo(int nbADecrementer){
+        if(this.nbDispo > 0) {
+            this.nbDispo=-nbADecrementer;
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
