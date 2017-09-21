@@ -19,8 +19,25 @@ public class ArticleTest {
         articles.add(a3);
         articles.add(a4);
 
+        articles.sort(new ArticleComparator("refCroiss"));
+        System.out.println("refCroiss " + articles.toString());
         articles.sort(new ArticleComparator("refDecroiss"));
-        System.out.println(articles.toString());
+        System.out.println("refDecroiss " + articles.toString());
+
+        articles.sort(new ArticleComparator("prixCroiss"));
+        System.out.println("prixCroiss " + articles.toString());
+        articles.sort(new ArticleComparator("prixDecroiss"));
+        System.out.println("prixDecroiss " + articles.toString());
+
+        articles.sort(new ArticleComparator("marqueCroiss"));
+        System.out.println("marqueCroiss " + articles.toString());
+        articles.sort(new ArticleComparator("marqueDecroiss"));
+        System.out.println("marqueDecroiss " + articles.toString());
+
+        articles.sort(new ArticleComparator("modeleCroiss"));
+        System.out.println("modeleCroiss " + articles.toString());
+        articles.sort(new ArticleComparator("modeleDecroiss"));
+        System.out.println("modeleDecroiss " + articles.toString());
     }
 
 }

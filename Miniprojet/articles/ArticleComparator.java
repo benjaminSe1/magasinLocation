@@ -5,14 +5,11 @@ import java.util.Comparator;
 public class ArticleComparator implements Comparator<Article> {
     private String filtre;
 
-    public ArticleComparator(String filtre){
+    public ArticleComparator(String filtre) {
         this.filtre = filtre;
     }
-    public int compare(Article o1, Article o2) {
-        return 0;
-    }
 
-    public int comparer(Article o1, Article o2) {
+    public int compare(Article o1, Article o2) {
         if (o1.equals(o2))return 0;
         int res = 0;
         if(this.filtre == "prixCroiss"){
@@ -75,7 +72,7 @@ public class ArticleComparator implements Comparator<Article> {
         }else if(this.filtre == "modeleCroiss"){
             if (o1.equals(o2))return 0;
             res = 0;
-            if (o1.getModele().compareTo(o2.getModele()) > 0) {
+            if (o1.getModele().compareTo(o2.getModele()) < 0) {
                 res = -1;
             } else if (o1.getModele().compareTo(o2.getModele()) == 0) {
                 res = 0;
@@ -85,7 +82,7 @@ public class ArticleComparator implements Comparator<Article> {
         }else if(this.filtre == "modeleDecroiss"){
             if (o1.equals(o2))return 0;
             res = 0;
-            if (o1.getModele().compareTo(o2.getModele()) < 0) {
+            if (o1.getModele().compareTo(o2.getModele()) > 0) {
                 res = -1;
             } else if (o1.getModele().compareTo(o2.getModele()) == 0) {
                 res = 0;
