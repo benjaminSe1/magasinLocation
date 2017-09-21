@@ -26,6 +26,12 @@ public class Location {
     }
 
     public String toString(){
-        return "Date de début : " + dateDebut + "\nDate de fin : " + dateFin + "\nListe des articles loués : " + articles;
+        String s = "";
+        s = "\nDate de début : " + dateDebut + " Date de fin : " + dateFin + "\nListe des articles loués : ";
+        for(Article a : articles.keySet()){
+            s += a.toString();
+            s += " nombre d'articles loués : " + this.articles.get(a);
+        }
+        return s;
     }
 }
