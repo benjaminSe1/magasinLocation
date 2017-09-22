@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import articles.Article;
+import articles.ArticleComparator;
 
 /**
  * Created by E149769S on 19/09/17.
@@ -15,14 +16,15 @@ public class Magasin {
     private Archive archive;
     private ArrayList<Location> locations;
     private ArrayList<Client> clients;
+    public static final String[] filtres = {"refCroiss", "refDecroiss","prixCroiss", "prixDecroiss","marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
 
-    public Magasin(String nom, ArrayList<Article> articleDispos, Archive archive, ArrayList<Location> locations, ArrayList<Client> clients) {
+    public Magasin(String nom, ArrayList<Article> articleDispos, Archive archives) {
         this.nom = nom;
         this.articlesDispos = articleDispos;
         this.archive = archive;
-        this.locations = locations;
-        this.clients = clients;
-        this.articlesNonDispos = new ArrayList<Article>();
+        this.locations = new ArrayList<>();
+        this.clients = new ArrayList<>();
+        this.articlesNonDispos = new ArrayList<>();
         for(Article a : this.articlesDispos){
             if(a.getNbDispo() <= 0){
                 this.articlesNonDispos.add(a);
@@ -35,6 +37,7 @@ public class Magasin {
     public boolean checkDispoLocation(HashMap<Article, Integer> articles){
         boolean res = true;
         for(Article a : articles.keySet()){
+            //exception
             if(a.getNbDispo() < articles.get(a)) res = false;
         }
         return res;
@@ -54,14 +57,21 @@ public class Magasin {
             if(!this.clients.contains(client))this.clients.add(client);
             return true;
         }else{
+            //exception
             return false;
         }
 
     }
 
     public String afficheArticle(String filtre){
+        //exception
+        if(!Magasin.checkFiltre(filtre))return "Mauvais filtre";
+        articlesDispos.sort(new ArticleComparator(filtre));
         String res = "";
-        return "";
+       for(Article a : articlesDispos){
+           res += a.toString();
+       }
+       return res;
     }
 
     public void afficheLocation(Client client){
@@ -70,5 +80,13 @@ public class Magasin {
 
     public void archive(Location location, Client client, Double montant){
 
+    }
+
+    public static boolean checkFiltre(String filtre){
+        boolean res = false;
+        for(String s : Magasin.filtres){
+            if(s == filtre) return true;
+        }
+        return res;
     }
 }
