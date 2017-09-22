@@ -31,6 +31,7 @@ public class Magasin {
         }
     }
 
+    //Check la disponnibilité d'un article
     public boolean checkDispoLocation(HashMap<Article, Integer> articles){
         boolean res = true;
         for(Article a : articles.keySet()){
