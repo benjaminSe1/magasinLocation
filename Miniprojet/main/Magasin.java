@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Locale;
 
 import articles.Article;
 import articles.ArticleComparator;
 import exception.ArticleIndispoException;
 
 /**
+ * Classe permettant de modéliser un Magasin
  * Created by E145725x on 19/09/17.
  */
 public class Magasin {
@@ -29,11 +29,11 @@ public class Magasin {
     public static final String[] filtres = {"refCroiss", "refDecroiss", "prixCroiss", "prixDecroiss", "marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
 
     /**
+     * Constructor
      * Constructeur de la classe Magasin. On le construit à partir d'une liste d'articles disponible ou non. Ces articles seront dispatchés dans les listes articlesDispo et articlesNonDispo
-     *
-     * @param nom Nom du magasin
-     * @param articles Liste des articles du magasin
-     * @param archives Archive du magasin
+     * @param nom - Le nom du magasin
+     * @param articles - La liste des articles du magasin
+     * @param archives - L'archive du magasin
      */
     public Magasin(String nom, ArrayList<Article> articles, Archive archives) {
         this.nom = nom;
@@ -57,9 +57,9 @@ public class Magasin {
     }
 
     /**
-     *Teste la disponibilité de d'une HashMap d'articles, correspondant au contenu d'une location
-     * @param articles HashMap d'articles dont ont veut tester la disponibilité
-     * @return boolean : true si disponible, false sinon
+     * Méthode permettant de tester la disponibilité d'une HashMap d'articles, correspondant au contenu d'une location
+     * @param articles - HashMap d'articles dont ont veut tester la disponibilité
+     * @return - Boolean : true si disponible, False sinon
      */
     public boolean checkDispoLocation(HashMap<Article, Integer> articles){
         boolean res = true;
@@ -73,12 +73,12 @@ public class Magasin {
     }
 
     /**
-     *Méthode qui permet d'effectuer une location. Elle créé l'objet location.
-     * @param articles articles HashMap correspondant au contenu d'une location
-     * @param dateDebut date de début de la location
-     * @param dateFin date de fin de la location
-     * @param client client qui loue
-     * @return boolean : true si la location c'est effectuée, false sinon
+     * Méthode qui permet d'effectuer une location. Elle créé l'objet location.
+     * @param articles - articles HashMap correspondant au contenu d'une location
+     * @param dateDebut - date de début de la location
+     * @param dateFin - date de fin de la location
+     * @param client - client qui loue
+     * @return - Boolean : true si la location c'est effectuée, false sinon
      * @throws ArticleIndispoException
      */
     public boolean loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException {
@@ -113,8 +113,8 @@ public class Magasin {
     }
 
     /**
-     * Méthode qui met à jour les liste d'articles. si l'article n'est pas dispo, il est mit dans la bonne liste.
-     * @param article
+     * Méthode qui met à jour les listes d'articles. Si l'article n'est pas dispo, il est mit dans la bonne liste.
+     * @param article - L'article à mettre à jour.
      */
     public void majDispoArticle(Article article){
         if(article.getNbDispo() <= 0){
@@ -125,8 +125,8 @@ public class Magasin {
 
     /**
      * Méthode qui retourne la liste de charactère représentant tous les articles disponibles du magasin
-     * @param filtre filtre sur la recherche peut être compris parmis les valeurs de Magasin.filtres
-     * @return String retourne la liste de charactère représentant tous les articles disponibles du magasin
+     * @param filtre - filtre sur la recherche peut être compris parmis les valeurs de Magasin.filtres
+     * @return String - retourne la liste de charactère représentant tous les articles disponibles du magasin
      */
     public String afficheArticle(String filtre) {
         //exception
@@ -145,7 +145,7 @@ public class Magasin {
 
     /**
      * Méthode qui affiche les locations pour un client donné
-     * @param client Client dont on souhaite connaitre les locations
+     * @param client - Client dont on souhaite connaitre les locations
      */
     public void afficheLocation(Client client) {
         client.afficheLocation();
@@ -153,15 +153,15 @@ public class Magasin {
 
     /**
      * Méthode qui permet d'archiver une location
-     * @param location La location que l'on veut archiver
+     * @param location - La location que l'on veut archiver
      */
     public void archive(Location location) {
     }
 
     /**
-     * Méthode permettant de vérifier si le filtre éxiste
-     * @param filtre Le filtre à vérifier
-     * @return boolean : True si le filtre éxiste, false sinon
+     * Méthode permettant de vérifier si le filtre existe
+     * @param filtre - Le filtre à vérifier
+     * @return Boolean - : True si le filtre éxiste, false sinon
      */
     public static boolean checkFiltre(String filtre) {
         boolean res = false;
