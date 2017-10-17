@@ -16,7 +16,7 @@ public class MagasinTest {
         Article a2 = new Article("ref2", "marque2", "modele2", 2.0, 2);
         Article a3 = new Article("ref3", "marque3", "modele3", 3.0, 3);
         Article a4 = new Article("ref4", "marque4", "modele4", 4.0, 0);
-        Article a5 = new Article("ref5", "marque4", "modele4", 4.0, 18);
+        Article a5 = new Article("ref5", "marque5", "modele5", 5.0, 18);
         articlesDispo.add(a1);
         articlesDispo.add(a2);
         articlesDispo.add(a3);
