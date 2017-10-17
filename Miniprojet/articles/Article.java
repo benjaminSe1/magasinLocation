@@ -50,7 +50,7 @@ public class Article {
 
     public boolean decrementeDispo(int nbADecrementer){
         if(this.nbDispo > 0) {
-            this.nbDispo=-nbADecrementer;
+            this.nbDispo =- nbADecrementer;
             return true;
         }else{
             return false;

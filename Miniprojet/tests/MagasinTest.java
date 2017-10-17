@@ -29,7 +29,8 @@ public class MagasinTest {
 
         System.out.println(mag.afficheArticle("refCroiss"));
         HashMap<Article, Integer> loc1 = new HashMap<>();
-        loc1.put(a1, 2);
+        loc1.put(a1, 1);
         mag.loue(loc1, "17/10/2017", "18/10/2017", c1);
+        System.out.println(mag.afficheArticle("refCroiss"));
     }
 }

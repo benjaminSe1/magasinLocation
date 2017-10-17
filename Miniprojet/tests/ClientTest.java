@@ -1,6 +1,8 @@
 package tests;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import articles.Article;
@@ -22,8 +24,20 @@ public class ClientTest {
         articles2.put(a2, 2);
         Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05", locations);
         //Client c2 = new Client("Abdelaziz", "Mathis", "5 Rue Maréchal Joffre", "02 03 04 05 065", locations);
-        Location l1 = new Location("21/09/2017", "21/09/2017", articles, c1, 0);
-        Location l2 = new Location("22/09/2017", "22/09/2017", articles2, c1, 0);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        dateFormat.setLenient(false);
+        Date dateD = null;
+        Date datef = null;
+        try {
+            dateD = dateFormat.parse("21/09/2017");
+            datef = dateFormat.parse("22/09/2017");
+        }
+        catch (Exception e) {
+            System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
+            System.err.println(e.getMessage());
+        }
+        Location l1 = new Location(dateD, datef, articles, c1, 0);
+        Location l2 = new Location(dateD, datef, articles2, c1, 0);
         locations.add(l1);
         locations.add(l2);
 

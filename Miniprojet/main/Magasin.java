@@ -1,8 +1,13 @@
 package main;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Locale;
 
 import articles.Article;
 import articles.ArticleComparator;
@@ -37,7 +42,7 @@ public class Magasin {
         System.out.println(articlesDispos);
     }
 
-    //Check la disponnibilité d'un article
+    //Check la disponibilité d'un article
     public boolean checkDispoLocation(HashMap<Article, Integer> articles){
         boolean res = true;
         for(Article a : articles.keySet()){
@@ -48,28 +53,37 @@ public class Magasin {
     }
 
     public boolean loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client){
-        if(this.checkDispoLocation(articles)) {
-            double montant = 0.0;
-            for(Article a : articles.keySet()){
-                a.decrementeDispo(articles.get(a));
-                montant += a.getPrix_j()*articles.get(a);
-                if(a.getNbDispo() == 0){
-                    this.articlesNonDispos.add(a);
-                    this.articlesDispos.remove(a);
+        try {
+            if(this.checkDispoLocation(articles)) {
+                DateFormat format = new SimpleDateFormat("dd/MM/YYYY");
+                Date dateD = format.parse(dateDebut);
+                Date dateF = format.parse(dateFin);
+                System.out.println("date : ");
+                System.out.println(dateD);
+                double montant = 0.0;
+                for(Article a : articles.keySet()){
+                    a.decrementeDispo(articles.get(a));
+                    montant += a.getPrix_j()*articles.get(a);
+                    if(a.getNbDispo() == 0){
+                        this.articlesNonDispos.add(a);
+                        this.articlesDispos.remove(a);
+                    }
                 }
+
+
+                Location loc = new Location(dateD, dateF, articles, client, montant);
+                this.locations.add(loc);
+                client.ajouteLocation(loc);
+                if(!this.clients.contains(client))this.clients.add(client);
+                return true;
+            }else{
+                //exception
+                return false;
             }
-
-
-            Location loc = new Location(dateDebut, dateFin, articles, client, montant);
-            this.locations.add(loc);
-            client.ajouteLocation(loc);
-            if(!this.clients.contains(client))this.clients.add(client);
-            return true;
-        }else{
-            //exception
-            return false;
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-
+        return false;
     }
 
     public String afficheArticle(String filtre){

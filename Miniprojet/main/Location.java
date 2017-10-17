@@ -1,6 +1,8 @@
 package main;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import articles.Article;
@@ -9,13 +11,13 @@ import articles.Article;
  * Created by E149769S on 19/09/17.
  */
 public class Location {
-    private String dateDebut;
-    private String dateFin;
+    private Date dateDebut;
+    private Date dateFin;
     private HashMap<Article, Integer> articles;
     private Client client;
     private double montant;
 
-    public Location(String dateDebut, String dateFin, HashMap<Article, Integer> articles, Client client, double montant) {
+    public Location(Date dateDebut, Date dateFin, HashMap<Article, Integer> articles, Client client, double montant) {
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.articles = articles;
