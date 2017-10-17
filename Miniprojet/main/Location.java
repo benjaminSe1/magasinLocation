@@ -1,10 +1,7 @@
 package main;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
 import articles.Article;
 
 /**
@@ -25,17 +22,21 @@ public class Location {
         this.montant = montant;
     }
 
-    public void rend(){
-
-    }
-
     public String toString(){
-        String s = "";
-        s = "\nDate de début : " + dateDebut + " Date de fin : " + dateFin + " montant : " + this.montant + "\nListe des articles loués : ";
+        String s = "\nLocation : \nLocation du : " + dateDebut + " jusqu'au " + dateFin + "\nMontant de la location : " + this.montant + " € \nListe des articles loués : ";
         for(Article a : articles.keySet()){
             s += a.toString();
-            s += " nombre d'articles loués : " + this.articles.get(a);
+            s += " nombre d'articles loués : " + this.articles.get(a) + "\n";
         }
         return s;
+    }
+
+
+    public HashMap<Article, Integer> getArticles() {
+        return articles;
+    }
+
+    public void setArticles(final HashMap<Article, Integer> articles) {
+        this.articles = articles;
     }
 }

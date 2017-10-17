@@ -21,7 +21,7 @@ public class Article {
     }
 
     public String toString(){
-        return "Article ref : " + this.reference + ", Marque : " + this.marque + ", Prix/jour" + this.prix_j + ", Nombre d'articles disponibles : " + this.nbDispo;
+        return "Référence article : " + this.reference + ", Marque : " + this.marque + ", Prix/jour : " + this.prix_j + ", Nombre d'articles disponibles : " + this.nbDispo;
     }
 
     public String getReference() {
@@ -42,6 +42,10 @@ public class Article {
 
     public int getNbDispo() {
         return nbDispo;
+    }
+
+    public void setNbDispo(int nbDispo){
+        this.nbDispo = nbDispo;
     }
 
     public boolean equals(Article a){

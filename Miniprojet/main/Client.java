@@ -1,6 +1,10 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import articles.Article;
 
 /**
  * Created by E149769S on 19/09/17.
@@ -24,8 +28,16 @@ public class Client {
 
     }
 
-    public void rend(){
-
+    public void rend(Location location){
+        for(Location l : locations){
+            if(l == location){
+                Map<Article, Integer> articles = new HashMap<>(location.getArticles());
+                for(Article a : articles.keySet()){
+                    a.setNbDispo(a.getNbDispo() + articles.get(a));
+                }
+                locations.remove(l);
+            }
+        }
     }
 
     public void ajouteLocation(Location loc){
@@ -34,6 +46,6 @@ public class Client {
 
     public void afficheLocation(){
         System.out.println("Client : " + this.nom + " " + this.prenom);
-        System.out.println("Locations : " + locations.toString());
+        System.out.println("Liste des locations du client : " + locations.toString());
     }
 }

@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import articles.Article;
+import exception.ArticleIndispoException;
 import main.Archive;
 import main.Client;
 import main.Magasin;
 
 public class MagasinTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ArticleIndispoException {
         ArrayList<Article> articlesDispo = new ArrayList<Article>();
         Article a1 = new Article("ref1", "marque1", "modele1", 1.0, 1);
         Article a2 = new Article("ref2", "marque2", "modele2", 2.0, 2);
@@ -32,5 +33,6 @@ public class MagasinTest {
         loc1.put(a1, 1);
         mag.loue(loc1, "17/10/2017", "18/10/2017", c1);
         System.out.println(mag.afficheArticle("refCroiss"));
+
     }
 }

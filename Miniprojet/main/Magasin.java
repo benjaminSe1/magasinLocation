@@ -50,8 +50,8 @@ public class Magasin {
         System.out.println(articlesDispos);
     }
 
-    //Check la disponibilité d'un article
-    public boolean checkDispoLocation(HashMap<Article, Integer> articles) {
+    //Check la disponnibilité d'une Hashmap d'articles
+    public boolean checkDispoLocation(HashMap<Article, Integer> articles){
         boolean res = true;
         for (Article a : articles.keySet()) {
             //exception
@@ -95,6 +95,17 @@ public class Magasin {
             e.printStackTrace();
         }
         return false;
+    }
+
+    //Set la disponnibilité des articles du magasin
+    public void setDispoLocation(HashMap<Article, Integer> articles){
+        for(Article a : articles.keySet()){
+            //Si le nombre disponnible de l'article est inférieur à celui actuellement enregistré dans le magasin
+            if(a.getNbDispo() == 0){
+                this.articlesNonDispos.add(a);
+                this.articlesDispos.remove(a);
+            }
+        }
     }
 
     public String afficheArticle(String filtre) {

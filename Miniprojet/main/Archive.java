@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Archive {
     private ArrayList<Location> locations;
 
-    public void archiver(){
+    public void archiver(Location location){
 
     }
 
