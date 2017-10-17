@@ -1,9 +1,11 @@
 package tests;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import articles.Article;
 import main.Archive;
+import main.Client;
 import main.Magasin;
 
 public class MagasinTest {
@@ -20,8 +22,13 @@ public class MagasinTest {
         articlesDispo.add(a3);
         articlesDispo.add(a4);
 
+        Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05", new ArrayList<>());
         Archive archive = new Archive();
         Magasin mag = new Magasin("monMag", articlesDispo, archive);
-        mag.afficheArticle("refCroiss");
+
+        System.out.println(mag.afficheArticle("refCroiss"));
+        HashMap<Article, Integer> loc1 = new HashMap<>();
+        loc1.put(a1, 2);
+        mag.loue(loc1, "17/10/2017", "18/10/2017", c1);
     }
 }

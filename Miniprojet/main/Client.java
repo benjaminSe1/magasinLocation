@@ -28,8 +28,12 @@ public class Client {
 
     }
 
+    public void ajouteLocation(Location loc){
+        this.locations.add(loc);
+    }
+
     public void afficheLocation(){
-        System.out.println("Client : " + this.nom + this.prenom);
+        System.out.println("Client : " + this.nom + " " + this.prenom);
         System.out.println("Locations : " + locations.toString());
     }
 }

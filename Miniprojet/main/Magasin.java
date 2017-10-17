@@ -2,12 +2,13 @@ package main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import articles.Article;
 import articles.ArticleComparator;
 
 /**
- * Created by E149769S on 19/09/17.
+ * Created by E145725x on 19/09/17.
  */
 public class Magasin {
     private String nom;
@@ -25,12 +26,15 @@ public class Magasin {
         this.locations = new ArrayList<>();
         this.clients = new ArrayList<>();
         this.articlesNonDispos = new ArrayList<>();
-        for(Article a : this.articlesDispos){
-            if(a.getNbDispo() <= 0){
-                this.articlesNonDispos.add(a);
-                this.articlesNonDispos.remove(a);
+        Iterator<Article> it = articleDispos.iterator();
+        while(it.hasNext()){
+            Article article = it.next();
+            if(article.getNbDispo() <= 0){
+                this.articlesNonDispos.add(article);
+                it.remove();
             }
         }
+        System.out.println(articlesDispos);
     }
 
     //Check la disponnibilité d'un article
@@ -43,17 +47,22 @@ public class Magasin {
         return res;
     }
 
-    public boolean loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client, double montant){
+    public boolean loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client){
         if(this.checkDispoLocation(articles)) {
+            double montant = 0.0;
             for(Article a : articles.keySet()){
                 a.decrementeDispo(articles.get(a));
+                montant += a.getPrix_j()*articles.get(a);
                 if(a.getNbDispo() == 0){
                     this.articlesNonDispos.add(a);
                     this.articlesDispos.remove(a);
                 }
             }
-            Location loc = new Location(dateDebut, dateFin, articles, client);
+
+
+            Location loc = new Location(dateDebut, dateFin, articles, client, montant);
             this.locations.add(loc);
+            client.ajouteLocation(loc);
             if(!this.clients.contains(client))this.clients.add(client);
             return true;
         }else{
@@ -68,8 +77,10 @@ public class Magasin {
         if(!Magasin.checkFiltre(filtre))return "Mauvais filtre";
         articlesDispos.sort(new ArticleComparator(filtre));
         String res = "";
-       for(Article a : articlesDispos){
-           res += a.toString();
+        Iterator<Article> it = articlesDispos.iterator();
+       while(it.hasNext()){
+           res += it.next().toString();
+           res += '\n';
        }
        return res;
     }
