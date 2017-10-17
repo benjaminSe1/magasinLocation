@@ -30,6 +30,8 @@ public class Magasin {
 
     private ArrayList<Client> clients;
 
+    public static DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+
     public static final String[] filtres = {"refCroiss", "refDecroiss", "prixCroiss", "prixDecroiss", "marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
 
     public Magasin(String nom, ArrayList<Article> articleDispos, Archive archives) {
@@ -65,13 +67,12 @@ public class Magasin {
     public boolean loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException {
         try {
             if (this.checkDispoLocation(articles)) {
-                DateFormat format = new SimpleDateFormat("dd/MM/YYYY");
-                Date dateD = format.parse(dateDebut);
-                Date dateF = format.parse(dateFin);
-                System.out.println("date : ");
-                System.out.println(dateD);
-                System.out.println("date : ");
-                System.out.println(dateF);
+                Date startDate = format.parse(dateDebut);
+                Date endDate = format.parse(dateFin);
+                String newDateDebutString = format.format(startDate);
+                String newDateFinString = format.format(endDate);
+                System.out.println(newDateDebutString);
+                System.out.println(newDateFinString);
                 double montant = 0.0;
                 for (Article a : articles.keySet()) {
                     a.decrementeDispo(articles.get(a));
@@ -81,7 +82,7 @@ public class Magasin {
                         this.articlesDispos.remove(a);
                     }
                 }
-                Location loc = new Location(dateD, dateF, articles, client, montant);
+                Location loc = new Location(startDate, endDate, articles, client, montant);
                 this.locations.add(loc);
                 client.ajouteLocation(loc);
                 if (!this.clients.contains(client)) {
