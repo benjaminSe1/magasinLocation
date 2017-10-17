@@ -16,11 +16,12 @@ public class MagasinTest {
         Article a2 = new Article("ref2", "marque2", "modele2", 2.0, 2);
         Article a3 = new Article("ref3", "marque3", "modele3", 3.0, 3);
         Article a4 = new Article("ref4", "marque4", "modele4", 4.0, 0);
+        Article a5 = new Article("ref5", "marque4", "modele4", 4.0, 18);
         articlesDispo.add(a1);
         articlesDispo.add(a2);
         articlesDispo.add(a3);
-        articlesDispo.add(a3);
         articlesDispo.add(a4);
+        articlesDispo.add(a5);
 
         Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05", new ArrayList<>());
         Archive archive = new Archive();
