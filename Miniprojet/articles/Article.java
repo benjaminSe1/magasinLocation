@@ -5,10 +5,15 @@ package articles;
  * Created by E149769S on 19/09/17.
  */
 public class Article {
+
     private String reference;
+
     private String marque;
+
     private String modele;
+
     private double prix_j;
+
     private int nbDispo;
 
     /**
@@ -31,7 +36,7 @@ public class Article {
      * Méthode permettant de définir l'affichage d'un article.
      * @return String - L'affichage d'un article sous forme de String.
      */
-    public String toString(){
+    public String toString() {
         return "Référence article : " + this.reference + ", Marque : " + this.marque + ", Prix/jour : " + this.prix_j + ", Nombre d'articles disponibles : " + this.nbDispo;
     }
 
@@ -79,7 +84,7 @@ public class Article {
      * Méthode permettant de mettre à jour le nombre d'articles disponnibles
      * @param nbDispo - Le nombre d'articles disponnibles
      */
-    public void setNbDispo(int nbDispo){
+    public void setNbDispo(int nbDispo) {
         this.nbDispo = nbDispo;
     }
 
@@ -88,21 +93,29 @@ public class Article {
      * @param a - L'article à comparer
      * @return Boolean - True si vrai, False sinon
      */
-    public boolean equals(Article a){
-        return this.reference==a.reference;
+    public boolean equals(Article a) {
+        return this.reference == a.reference;
     }
 
     /**
-     *
+     *Méthode qui permet de décrémenter le nombre d'articles dispo de la classe.
      * @param nbADecrementer - Le nombre d'articles à enlever au nombre d'articles disponnibles
      * @return Boolean - True si l'opération est possible, False sinon.
      */
-    public boolean decrementeDispo(int nbADecrementer){
-        if(this.nbDispo >= nbADecrementer) {
-            this.nbDispo =- nbADecrementer;
+    public boolean decrementeDispo(int nbADecrementer) {
+        if (this.nbDispo >= nbADecrementer) {
+            this.nbDispo -= nbADecrementer;
             return true;
-        }else{
+        } else {
             return false;
         }
+    }
+
+    /**
+     *Méthode qui permet d'incrémenter le nombre d'articles dispo de la classe.
+     * @param nbAIncrementer - Le nombre d'articles à ajouter au nombre d'articles disponnibles
+     */
+    public void incrementeDispo(int nbAIncrementer) {
+        this.nbDispo += nbAIncrementer;
     }
 }

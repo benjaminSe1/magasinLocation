@@ -1,50 +1,57 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import articles.Article;
-
-/**
+/**Méthode qui permet de réprensenter un client du magasin
  * Created by E149769S on 19/09/17.
  */
 public class Client {
+
     private String nom;
+
     private String prenom;
+
     private String adresse;
+
     private String telephone;
+
     private ArrayList<Location> locations;
 
-    public Client(String nom, String prenom, String adresse, String telephone, ArrayList<Location> locations) {
+    /**
+     * Constructeur de la classe Client
+     * @param nom Nom du client
+     * @param prenom Prénom du client
+     * @param adresse Adresse du client
+     * @param telephone Télésphone du client
+     */
+    public Client(String nom, String prenom, String adresse, String telephone) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.telephone = telephone;
-        this.locations = locations;
+        this.locations = new ArrayList<>();
     }
 
-    public void loue(){
-
+    /**
+     * Méthode qui permet au client de rendre une de ses locations, c'est-a-dire de la supprimer de sa liste de locations
+     * @param location La location qu'il a rendu
+     */
+    public void rend(Location location) {
+        this.locations.remove(location);
     }
 
-    public void rend(Location location){
-        for(Location l : locations){
-            if(l == location){
-                Map<Article, Integer> articles = new HashMap<>(location.getArticles());
-                for(Article a : articles.keySet()){
-                    a.setNbDispo(a.getNbDispo() + articles.get(a));
-                }
-                locations.remove(l);
-            }
-        }
-    }
-
-    public void ajouteLocation(Location loc){
+    /**
+     * Méthode qui permer d'ajouter un location à la liste de location du client
+     * @param loc La location à ajouter
+     */
+    public void ajouteLocation(Location loc) {
         this.locations.add(loc);
     }
 
-    public void afficheLocation(){
+    /**
+     * Méthode qui permet d'afficher les locations en cours d'un client
+     */
+    public void afficheLocation() {
         System.out.println("Client : " + this.nom + " " + this.prenom);
         System.out.println("Liste des locations du client : " + locations.toString());
     }

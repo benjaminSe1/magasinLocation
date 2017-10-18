@@ -11,20 +11,25 @@ import java.util.Iterator;
 import articles.Article;
 import articles.ArticleComparator;
 import exception.ArticleIndispoException;
+import exception.LocationImpossibleException;
 
 /**
  * Classe permettant de modéliser un Magasin
  * Created by E145725x on 19/09/17.
  */
 public class Magasin {
-    private String nom;
-    private ArrayList<Article> articlesDispos;
-    private ArrayList<Article> articlesNonDispos;
-    private Archive archive;
-    private ArrayList<Location> locations;
-    private ArrayList<Client> clients;
 
-    public static DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+    private String nom;
+
+    private ArrayList<Article> articlesDispos;
+
+    private ArrayList<Article> articlesNonDispos;
+
+    private Archive archive;
+
+    private ArrayList<Location> locations;
+
+    private ArrayList<Client> clients;
 
     public static final String[] filtres = {"refCroiss", "refDecroiss", "prixCroiss", "prixDecroiss", "marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
 
@@ -33,9 +38,9 @@ public class Magasin {
      * Constructeur de la classe Magasin. On le construit à partir d'une liste d'articles disponible ou non. Ces articles seront dispatchés dans les listes articlesDispo et articlesNonDispo
      * @param nom - Le nom du magasin
      * @param articles - La liste des articles du magasin
-     * @param archives - L'archive du magasin
+     * @param archive - L'archive du magasin
      */
-    public Magasin(String nom, ArrayList<Article> articles, Archive archives) {
+    public Magasin(String nom, ArrayList<Article> articles, Archive archive) {
         this.nom = nom;
         this.articlesDispos = new ArrayList<>();
         this.archive = archive;
@@ -50,7 +55,7 @@ public class Magasin {
             Article article = it.next();
             if (article.getNbDispo() <= 0) {
                 this.articlesNonDispos.add(article);
-            }else{
+            } else {
                 this.articlesDispos.add(article);
             }
         }
@@ -61,7 +66,7 @@ public class Magasin {
      * @param articles - HashMap d'articles dont ont veut tester la disponibilité
      * @return - Boolean : true si disponible, False sinon
      */
-    public boolean checkDispoLocation(HashMap<Article, Integer> articles){
+    public boolean checkDispoLocation(HashMap<Article, Integer> articles) {
         boolean res = true;
         for (Article a : articles.keySet()) {
             //exception
@@ -73,28 +78,24 @@ public class Magasin {
     }
 
     /**
-     * Méthode qui permet d'effectuer une location. Elle créé l'objet location.
+     * Méthode qui permet d'effectuer une location. Elle créée l'objet location.
      * @param articles - articles HashMap correspondant au contenu d'une location
      * @param dateDebut - date de début de la location
      * @param dateFin - date de fin de la location
      * @param client - client qui loue
-     * @return - Boolean : true si la location c'est effectuée, false sinon
+     * @return la location créée
      * @throws ArticleIndispoException
      */
-    public boolean loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException {
-        try {
-            if (this.checkDispoLocation(articles)) {
-                Date startDate = format.parse(dateDebut);
-                Date endDate = format.parse(dateFin);
-                String newDateDebutString = format.format(startDate);
-                String newDateFinString = format.format(endDate);
-                System.out.println(newDateDebutString);
-                System.out.println(newDateFinString);
+    public Location loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException, LocationImpossibleException, ParseException {
+        if (this.checkDispoLocation(articles)) {
+            Date startDate = stringToDate(dateDebut);
+            Date endDate = stringToDate(dateFin);
+            if (startDate.before(endDate)) {
                 double montant = 0.0;
                 for (Article a : articles.keySet()) {
                     a.decrementeDispo(articles.get(a));
                     montant += a.getPrix_j() * articles.get(a);
-                    this.majDispoArticle(a);
+                    this.majListeArticles(a);
                 }
                 Location loc = new Location(startDate, endDate, articles, client, montant);
                 this.locations.add(loc);
@@ -102,24 +103,44 @@ public class Magasin {
                 if (!this.clients.contains(client)) {
                     this.clients.add(client);
                 }
-                return true;
+                return loc;
             } else {
-                throw new ArticleIndispoException("Un des articles est indispo");
+                throw new LocationImpossibleException("Date de début de location doit être avant date de fin de location");
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } else {
+            throw new ArticleIndispoException("Un des articles est indispo");
         }
-        return false;
     }
 
     /**
-     * Méthode qui met à jour les listes d'articles. Si l'article n'est pas dispo, il est mit dans la bonne liste.
-     * @param article - L'article à mettre à jour.
+     * Méthode qui permet de gérer la restitution des articles de la location
+     * @param location la location qui est rendu au magasin
      */
-    public void majDispoArticle(Article article){
-        if(article.getNbDispo() <= 0){
+    public void rend(Location location) {
+        Client c = location.getClient();
+        for (Article a : location.getArticles().keySet()) {
+            a.incrementeDispo(location.getArticles().get(a));
+            this.majListeArticles(a);
+        }
+        c.rend(location);
+        this.archive.archiver(location);
+    }
+
+    /**
+     * Méthode qui met à jour les listes d'articles. En fonction de sa disponibilité, l'article est mit dans la bonne liste.
+     * @param article L'article à mettre à jour.
+     */
+    public void majListeArticles(Article article) {
+        if (article.getNbDispo() <= 0) {
             this.articlesNonDispos.add(article);
             this.articlesDispos.remove(article);
+        } else if (article.getNbDispo() > 0) {
+            if (this.articlesNonDispos.contains(article)) {
+                this.articlesNonDispos.remove(article);
+            }
+            if (!this.articlesDispos.contains(article)) {
+                this.articlesDispos.add(article);
+            }
         }
     }
 
@@ -171,5 +192,29 @@ public class Magasin {
             }
         }
         return res;
+    }
+
+    /**
+     * Méthode permettant de prendre une date et de la transformer en string au format dd/MM/yyyy
+     * @param date - La date à retourner en String
+     * @return newDateString - La date en String
+     * @throws ParseException
+     */
+    public static String dateToString(Date date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String newDateString = format.format(date);
+        return newDateString;
+    }
+
+    /**
+     * Méthode permettant de prendre une date et de la transformer en string au format dd/MM/yyyy
+     * @param stringDate - La string à parser en date
+     * @return date - La date parsée
+     * @throws ParseException
+     */
+    public static Date stringToDate(String stringDate) throws ParseException {
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = format.parse(stringDate);
+        return date;
     }
 }
