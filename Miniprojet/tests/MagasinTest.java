@@ -1,17 +1,19 @@
 package tests;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import articles.Article;
 import exception.ArticleIndispoException;
+import exception.LocationImpossibleException;
 import main.Archive;
 import main.Client;
 import main.Magasin;
 
 public class MagasinTest {
 
-    public static void main(String[] args) throws ArticleIndispoException {
+    public static void main(String[] args) throws ArticleIndispoException, ParseException, LocationImpossibleException {
         ArrayList<Article> articlesDispo = new ArrayList<Article>();
         Article a1 = new Article("ref1", "marque1", "modele1", 1.0, 1);
         Article a2 = new Article("ref2", "marque2", "modele2", 2.0, 2);
