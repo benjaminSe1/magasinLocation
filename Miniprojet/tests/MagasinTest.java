@@ -9,6 +9,7 @@ import exception.ArticleIndispoException;
 import exception.LocationImpossibleException;
 import main.Archive;
 import main.Client;
+import main.Location;
 import main.Magasin;
 
 public class MagasinTest {
@@ -31,12 +32,16 @@ public class MagasinTest {
         Magasin mag = new Magasin("monMag", articlesDispo, archive);
 
         System.out.println(mag.afficheArticle("refCroiss"));
-        HashMap<Article, Integer> loc1 = new HashMap<>();
-        loc1.put(a1, 1);
-        loc1.put(a2, 1);
-        loc1.put(a3, 1);
-        loc1.put(a4, 1);
-        mag.loue(loc1, "17/10/2017", "18/10/2017", c1);
+        HashMap<Article, Integer> tabLoc1 = new HashMap<>();
+        tabLoc1.put(a1, 1);
+        tabLoc1.put(a2, 2);
+
+        Location loc = mag.loue(tabLoc1, "17/10/2017", "18/10/2017", c1);
+        System.out.println(mag.afficheArticle("refCroiss"));
+        mag.rend(loc);
+        System.out.println(mag.afficheArticle("refCroiss"));
+
+        Location loc2 = mag.loue(tabLoc1, "17/10/2017", "18/10/2017", c1);
         System.out.println(mag.afficheArticle("refCroiss"));
     }
 }

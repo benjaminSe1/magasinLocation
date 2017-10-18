@@ -93,7 +93,7 @@ public class Article {
     }
 
     /**
-     *
+     *Méthode qui permet de décrémenter le nombre d'articles dispo de la classe.
      * @param nbADecrementer - Le nombre d'articles à enlever au nombre d'articles disponnibles
      * @return Boolean - True si l'opération est possible, False sinon.
      */
@@ -104,5 +104,13 @@ public class Article {
         }else{
             return false;
         }
+    }
+
+    /**
+     *Méthode qui permet d'incrémenter le nombre d'articles dispo de la classe.
+     * @param nbAIncrementer - Le nombre d'articles à ajouter au nombre d'articles disponnibles
+     */
+    public void incrementeDispo(int nbAIncrementer){
+        this.nbDispo += nbAIncrementer;
     }
 }

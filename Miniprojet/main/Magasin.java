@@ -30,16 +30,11 @@ public class Magasin {
     /**
      * Constructor
      * Constructeur de la classe Magasin. On le construit à partir d'une liste d'articles disponible ou non. Ces articles seront dispatchés dans les listes articlesDispo et articlesNonDispo
-<<<<<<< HEAD
-     *
-     * @param nom      - Le nom du magasin
-=======
      * @param nom - Le nom du magasin
->>>>>>> origin/master
      * @param articles - La liste des articles du magasin
-     * @param archives - L'archive du magasin
+     * @param archive - L'archive du magasin
      */
-    public Magasin(String nom, ArrayList<Article> articles, Archive archives) {
+    public Magasin(String nom, ArrayList<Article> articles, Archive archive) {
         this.nom = nom;
         this.articlesDispos = new ArrayList<>();
         this.archive = archive;
@@ -77,14 +72,15 @@ public class Magasin {
     }
 
     /**
-     * Méthode qui permet d'effectuer une location. Elle créé l'objet location.
+     * Méthode qui permet d'effectuer une location. Elle créée l'objet location.
      * @param articles - articles HashMap correspondant au contenu d'une location
      * @param dateDebut - date de début de la location
      * @param dateFin - date de fin de la location
      * @param client - client qui loue
+     * @return la location créée
      * @throws ArticleIndispoException
      */
-    public void loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException, LocationImpossibleException, ParseException {
+    public Location loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException, LocationImpossibleException, ParseException {
             if (this.checkDispoLocation(articles)) {
                 Date startDate = stringToDate(dateDebut);
                 Date endDate = stringToDate(dateFin);
@@ -102,6 +98,7 @@ public class Magasin {
                     if (!this.clients.contains(client)) {
                         this.clients.add(client);
                     }
+                    return loc;
                 }else{
                     throw new LocationImpossibleException("Date de début de location doit être avant date de fin de location");
                 }
@@ -110,19 +107,36 @@ public class Magasin {
             }
     }
 
-    public void rend(Location location, Client client){
-
+    /**
+     * Méthode qui permet de gérer la restitution des articles de la location
+     * @param location la location qui est rendu au magasin
+     */
+    public void rend(Location location){
+        Client c = location.getClient();
+        for (Article a : location.getArticles().keySet()) {
+            a.incrementeDispo(location.getArticles().get(a));
+            this.majListeArticles(a);
+        }
+        c.rend(location);
+        this.archive.archiver(location);
     }
 
 
     /**
-     * Méthode qui met à jour les listes d'articles. Si l'article n'est pas dispo, il est mit dans la bonne liste.
-     * @param article - L'article à mettre à jour.
+     * Méthode qui met à jour les listes d'articles. En fonction de sa disponibilité, l'article est mit dans la bonne liste.
+     * @param article L'article à mettre à jour.
      */
     public void majListeArticles(Article article) {
         if (article.getNbDispo() <= 0) {
             this.articlesNonDispos.add(article);
             this.articlesDispos.remove(article);
+        }else if(article.getNbDispo() > 0){
+            if(this.articlesNonDispos.contains(article)){
+                this.articlesNonDispos.remove(article);
+            }
+            if(!this.articlesDispos.contains(article)){
+                this.articlesDispos.add(article);
+            }
         }
     }
 

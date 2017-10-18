@@ -1,7 +1,7 @@
 package exception;
 
 /**
- * Created by E145725X on 18/10/17.
+ * Classe LocationImpossibleException extends exception. elle est levée quand une location est impossible à effectuée
  */
 public class LocationImpossibleException extends Exception{
 
