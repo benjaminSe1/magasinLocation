@@ -18,11 +18,17 @@ import exception.LocationImpossibleException;
  * Created by E145725x on 19/09/17.
  */
 public class Magasin {
+
     private String nom;
+
     private ArrayList<Article> articlesDispos;
+
     private ArrayList<Article> articlesNonDispos;
+
     private Archive archive;
+
     private ArrayList<Location> locations;
+
     private ArrayList<Client> clients;
 
     public static final String[] filtres = {"refCroiss", "refDecroiss", "prixCroiss", "prixDecroiss", "marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
@@ -81,37 +87,36 @@ public class Magasin {
      * @throws ArticleIndispoException
      */
     public Location loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException, LocationImpossibleException, ParseException {
-            if (this.checkDispoLocation(articles)) {
-                Date startDate = stringToDate(dateDebut);
-                Date endDate = stringToDate(dateFin);
-                if (startDate.before(endDate)) {
-                    double montant = 0.0;
-                    for (Article a : articles.keySet()) {
-                        a.decrementeDispo(articles.get(a));
-                        montant += a.getPrix_j() * articles.get(a);
-                        this.majListeArticles(a);
-                    }
-
-                    Location loc = new Location(startDate, endDate, articles, client, montant);
-                    this.locations.add(loc);
-                    client.ajouteLocation(loc);
-                    if (!this.clients.contains(client)) {
-                        this.clients.add(client);
-                    }
-                    return loc;
-                }else{
-                    throw new LocationImpossibleException("Date de début de location doit être avant date de fin de location");
+        if (this.checkDispoLocation(articles)) {
+            Date startDate = stringToDate(dateDebut);
+            Date endDate = stringToDate(dateFin);
+            if (startDate.before(endDate)) {
+                double montant = 0.0;
+                for (Article a : articles.keySet()) {
+                    a.decrementeDispo(articles.get(a));
+                    montant += a.getPrix_j() * articles.get(a);
+                    this.majListeArticles(a);
                 }
+                Location loc = new Location(startDate, endDate, articles, client, montant);
+                this.locations.add(loc);
+                client.ajouteLocation(loc);
+                if (!this.clients.contains(client)) {
+                    this.clients.add(client);
+                }
+                return loc;
             } else {
-                throw new ArticleIndispoException("Un des articles est indispo");
+                throw new LocationImpossibleException("Date de début de location doit être avant date de fin de location");
             }
+        } else {
+            throw new ArticleIndispoException("Un des articles est indispo");
+        }
     }
 
     /**
      * Méthode qui permet de gérer la restitution des articles de la location
      * @param location la location qui est rendu au magasin
      */
-    public void rend(Location location){
+    public void rend(Location location) {
         Client c = location.getClient();
         for (Article a : location.getArticles().keySet()) {
             a.incrementeDispo(location.getArticles().get(a));
@@ -121,7 +126,6 @@ public class Magasin {
         this.archive.archiver(location);
     }
 
-
     /**
      * Méthode qui met à jour les listes d'articles. En fonction de sa disponibilité, l'article est mit dans la bonne liste.
      * @param article L'article à mettre à jour.
@@ -130,11 +134,11 @@ public class Magasin {
         if (article.getNbDispo() <= 0) {
             this.articlesNonDispos.add(article);
             this.articlesDispos.remove(article);
-        }else if(article.getNbDispo() > 0){
-            if(this.articlesNonDispos.contains(article)){
+        } else if (article.getNbDispo() > 0) {
+            if (this.articlesNonDispos.contains(article)) {
                 this.articlesNonDispos.remove(article);
             }
-            if(!this.articlesDispos.contains(article)){
+            if (!this.articlesDispos.contains(article)) {
                 this.articlesDispos.add(article);
             }
         }

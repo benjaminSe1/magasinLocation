@@ -1,19 +1,20 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import articles.Article;
 
 /**Méthode qui permet de réprensenter un client du magasin
  * Created by E149769S on 19/09/17.
  */
 public class Client {
+
     private String nom;
+
     private String prenom;
+
     private String adresse;
+
     private String telephone;
+
     private ArrayList<Location> locations;
 
     /**
@@ -35,7 +36,7 @@ public class Client {
      * Méthode qui permet au client de rendre une de ses locations, c'est-a-dire de la supprimer de sa liste de locations
      * @param location La location qu'il a rendu
      */
-    public void rend(Location location){
+    public void rend(Location location) {
         this.locations.remove(location);
     }
 
@@ -43,14 +44,14 @@ public class Client {
      * Méthode qui permer d'ajouter un location à la liste de location du client
      * @param loc La location à ajouter
      */
-    public void ajouteLocation(Location loc){
+    public void ajouteLocation(Location loc) {
         this.locations.add(loc);
     }
 
     /**
      * Méthode qui permet d'afficher les locations en cours d'un client
      */
-    public void afficheLocation(){
+    public void afficheLocation() {
         System.out.println("Client : " + this.nom + " " + this.prenom);
         System.out.println("Liste des locations du client : " + locations.toString());
     }

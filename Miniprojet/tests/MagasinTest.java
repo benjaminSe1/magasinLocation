@@ -26,21 +26,17 @@ public class MagasinTest {
         articlesDispo.add(a3);
         articlesDispo.add(a4);
         articlesDispo.add(a5);
-
         Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05", new ArrayList<>());
         Archive archive = new Archive();
         Magasin mag = new Magasin("monMag", articlesDispo, archive);
-
         System.out.println(mag.afficheArticle("refCroiss"));
         HashMap<Article, Integer> tabLoc1 = new HashMap<>();
         tabLoc1.put(a1, 1);
         tabLoc1.put(a2, 2);
-
         Location loc = mag.loue(tabLoc1, "17/10/2017", "18/10/2017", c1);
         System.out.println(mag.afficheArticle("refCroiss"));
         mag.rend(loc);
         System.out.println(mag.afficheArticle("refCroiss"));
-
         Location loc2 = mag.loue(tabLoc1, "17/10/2017", "18/10/2017", c1);
         System.out.println(mag.afficheArticle("refCroiss"));
     }

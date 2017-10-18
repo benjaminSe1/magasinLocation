@@ -6,6 +6,7 @@ import java.util.ArrayList;
  * Created by E149769S on 19/09/17.
  */
 public class Archive {
+
     private ArrayList<Location> locations;
 
     /**
@@ -27,8 +28,7 @@ public class Archive {
      * Méthode qui permet d'archiver une location
      * @param location Location à archiver
      */
-    public void archiver(Location location){
-
+    public void archiver(Location location) {
     }
 
     /**
@@ -36,7 +36,6 @@ public class Archive {
      * @param annee Annee de la recherche à partir de la création du magasin : 0 --> 0 à 1 an , 1 --> 1 à 2 an, etc...
      * @param numMois Mois de la recherche (1 -->Janvier, 2 --> Fevrier, etc...)
      */
-    public void afficher(int annee, int numMois){
-
+    public void afficher(int annee, int numMois) {
     }
 }

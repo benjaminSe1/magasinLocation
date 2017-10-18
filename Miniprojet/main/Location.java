@@ -12,10 +12,15 @@ import static main.Magasin.dateToString;
  * Created by E149769S on 19/09/17.
  */
 public class Location {
+
     private Date dateDebut;
+
     private Date dateFin;
+
     private HashMap<Article, Integer> articles;
+
     private Client client;
+
     private double montant;
 
     /**
@@ -75,7 +80,7 @@ public class Location {
      * Getter de l'attribut client
      * @return le client
      */
-    public Client getClient(){
+    public Client getClient() {
         return this.client;
     }
 }

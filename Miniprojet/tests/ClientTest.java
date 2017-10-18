@@ -30,18 +30,15 @@ public class ClientTest {
         try {
             dateD = dateFormat.parse("21/09/2017");
             datef = dateFormat.parse("22/09/2017");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
             System.err.println(e.getMessage());
         }
-
         ArrayList<Location> locations = new ArrayList<Location>();
         Location l1 = new Location(dateD, datef, articles, c1, 0);
         Location l2 = new Location(dateD, datef, articles2, c1, 0);
         locations.add(l1);
         locations.add(l2);
-
         c1.afficheLocation();
     }
 }
