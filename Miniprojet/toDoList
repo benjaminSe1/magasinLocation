@@ -1,7 +1,8 @@
-Afficher ensemble location en cours pour un client donnée:
+/*
+Afficher l'ensemble des locations en cours pour un client donné :
     -les locations en cours?
-    -optimiser affichage
-
+    -optimiser l'affichage
+*/
 Archiver les locations au moment de la restitution du matériel dans des fichiers de location mensuels.
 Ainsi, toutes les locations avec une date de retour en novembre 2017, seront archivées dans un fichier texte nommé 201711.loc
 

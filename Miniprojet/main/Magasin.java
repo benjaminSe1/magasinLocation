@@ -30,8 +30,12 @@ public class Magasin {
     /**
      * Constructor
      * Constructeur de la classe Magasin. On le construit à partir d'une liste d'articles disponible ou non. Ces articles seront dispatchés dans les listes articlesDispo et articlesNonDispo
+<<<<<<< HEAD
      *
      * @param nom      - Le nom du magasin
+=======
+     * @param nom - Le nom du magasin
+>>>>>>> origin/master
      * @param articles - La liste des articles du magasin
      * @param archives - L'archive du magasin
      */
@@ -58,7 +62,6 @@ public class Magasin {
 
     /**
      * Méthode permettant de tester la disponibilité d'une HashMap d'articles, correspondant au contenu d'une location
-     *
      * @param articles - HashMap d'articles dont ont veut tester la disponibilité
      * @return - Boolean : true si disponible, False sinon
      */
@@ -75,11 +78,10 @@ public class Magasin {
 
     /**
      * Méthode qui permet d'effectuer une location. Elle créé l'objet location.
-     *
-     * @param articles  - articles HashMap correspondant au contenu d'une location
+     * @param articles - articles HashMap correspondant au contenu d'une location
      * @param dateDebut - date de début de la location
-     * @param dateFin   - date de fin de la location
-     * @param client    - client qui loue
+     * @param dateFin - date de fin de la location
+     * @param client - client qui loue
      * @throws ArticleIndispoException
      */
     public void loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException, LocationImpossibleException, ParseException {
@@ -115,7 +117,6 @@ public class Magasin {
 
     /**
      * Méthode qui met à jour les listes d'articles. Si l'article n'est pas dispo, il est mit dans la bonne liste.
-     *
      * @param article - L'article à mettre à jour.
      */
     public void majListeArticles(Article article) {
@@ -127,7 +128,6 @@ public class Magasin {
 
     /**
      * Méthode qui retourne la liste de charactère représentant tous les articles disponibles du magasin
-     *
      * @param filtre - filtre sur la recherche peut être compris parmis les valeurs de Magasin.filtres
      * @return String - retourne la liste de charactère représentant tous les articles disponibles du magasin
      */
@@ -148,7 +148,6 @@ public class Magasin {
 
     /**
      * Méthode qui affiche les locations pour un client donné
-     *
      * @param client - Client dont on souhaite connaitre les locations
      */
     public void afficheLocation(Client client) {
@@ -157,7 +156,6 @@ public class Magasin {
 
     /**
      * Méthode qui permet d'archiver une location
-     *
      * @param location - La location que l'on veut archiver
      */
     public void archive(Location location) {
@@ -165,7 +163,6 @@ public class Magasin {
 
     /**
      * Méthode permettant de vérifier si le filtre existe
-     *
      * @param filtre - Le filtre à vérifier
      * @return Boolean - : True si le filtre éxiste, false sinon
      */
@@ -181,7 +178,6 @@ public class Magasin {
 
     /**
      * Méthode permettant de prendre une date et de la transformer en string au format dd/MM/yyyy
-     *
      * @param date - La date à retourner en String
      * @return newDateString - La date en String
      * @throws ParseException
@@ -194,7 +190,6 @@ public class Magasin {
 
     /**
      * Méthode permettant de prendre une date et de la transformer en string au format dd/MM/yyyy
-     *
      * @param stringDate - La string à parser en date
      * @return date - La date parsée
      * @throws ParseException
