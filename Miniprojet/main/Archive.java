@@ -1,6 +1,10 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+
+import articles.Article;
 
 /**Classe qui permet de représenter une archive de magasin
  * Created by E149769S on 19/09/17.
@@ -29,6 +33,13 @@ public class Archive {
      * @param location Location à archiver
      */
     public void archiver(Location location) {
+        Date dateDebut = location.getDateDebut();
+        Date dateFin = location.getDateFin();
+        HashMap<Article, Integer> articles = location.getArticles();
+        Client client = location.getClient();
+        double montant = location.getMontant();
+
+
     }
 
     /**

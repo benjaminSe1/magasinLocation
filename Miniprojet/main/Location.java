@@ -23,6 +23,8 @@ public class Location {
 
     private double montant;
 
+    private boolean isArchived;
+
 
     /**
      * Constructeur de la classe Location
@@ -38,6 +40,7 @@ public class Location {
         this.articles = articles;
         this.client = client;
         this.montant = montant;
+        this.isArchived = false;
     }
 
     /**

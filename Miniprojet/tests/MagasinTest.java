@@ -26,7 +26,7 @@ public class MagasinTest {
         articlesDispo.add(a3);
         articlesDispo.add(a4);
         articlesDispo.add(a5);
-        Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05", new ArrayList<>());
+        Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05");
         Archive archive = new Archive();
         Magasin mag = new Magasin("monMag", articlesDispo, archive);
         System.out.println(mag.afficheArticle("refCroiss"));
