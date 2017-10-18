@@ -11,6 +11,7 @@ import java.util.Iterator;
 import articles.Article;
 import articles.ArticleComparator;
 import exception.ArticleIndispoException;
+import exception.LocationImpossibleException;
 
 /**
  * Classe permettant de modéliser un Magasin
@@ -88,13 +89,11 @@ public class Magasin {
                 Date endDate = format.parse(dateFin);
                 String newDateDebutString = format.format(startDate);
                 String newDateFinString = format.format(endDate);
-                System.out.println(newDateDebutString);
-                System.out.println(newDateFinString);
                 double montant = 0.0;
                 for (Article a : articles.keySet()) {
                     a.decrementeDispo(articles.get(a));
                     montant += a.getPrix_j() * articles.get(a);
-                    this.majDispoArticle(a);
+                    this.majListeArticles(a);
                 }
                 Location loc = new Location(startDate, endDate, articles, client, montant);
                 this.locations.add(loc);
@@ -116,7 +115,7 @@ public class Magasin {
      * Méthode qui met à jour les listes d'articles. Si l'article n'est pas dispo, il est mit dans la bonne liste.
      * @param article - L'article à mettre à jour.
      */
-    public void majDispoArticle(Article article){
+    public void majListeArticles(Article article){
         if(article.getNbDispo() <= 0){
             this.articlesNonDispos.add(article);
             this.articlesDispos.remove(article);
