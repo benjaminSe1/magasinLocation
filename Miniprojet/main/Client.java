@@ -31,10 +31,6 @@ public class Client {
     public void rend(Location location){
         for(Location l : locations){
             if(l == location){
-                Map<Article, Integer> articles = new HashMap<>(location.getArticles());
-                for(Article a : articles.keySet()){
-                    a.setNbDispo(a.getNbDispo() + articles.get(a));
-                }
                 locations.remove(l);
             }
         }
