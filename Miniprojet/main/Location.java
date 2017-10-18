@@ -23,6 +23,7 @@ public class Location {
 
     private double montant;
 
+
     /**
      * Constructeur de la classe Location
      * @param dateDebut représente la date de début de la location
@@ -78,9 +79,77 @@ public class Location {
 
     /**
      * Getter de l'attribut client
-     * @return le client
+     *
+     * @return la valeur de client
      */
     public Client getClient() {
-        return this.client;
+        return client;
+    }
+
+    /**
+     * Getter de l'attribut dateDebut
+     *
+     * @return la valeur de dateDebut
+     */
+    public Date getDateDebut() {
+        return dateDebut;
+    }
+
+    /**
+     * Getter de l'attribut dateFin
+     *
+     * @return la valeur de dateFin
+     */
+    public Date getDateFin() {
+        return dateFin;
+    }
+
+    /**
+     * Getter de l'attribut montant
+     *
+     * @return la valeur de montant
+     */
+    public double getMontant() {
+        return montant;
+    }
+
+    /**
+     * setter de l'attribut dateDebut
+     *
+     * @param dateDebut nouvelle valeur de l'attribut
+     */
+    public Location setDateDebut(Date dateDebut) {
+        this.dateDebut = dateDebut;
+        return this;
+    }
+
+    /**
+     * setter de l'attribut dateFin
+     *
+     * @param dateFin nouvelle valeur de l'attribut
+     */
+    public Location setDateFin(Date dateFin) {
+        this.dateFin = dateFin;
+        return this;
+    }
+
+    /**
+     * setter de l'attribut client
+     *
+     * @param client nouvelle valeur de l'attribut
+     */
+    public Location setClient(Client client) {
+        this.client = client;
+        return this;
+    }
+
+    /**
+     * setter de l'attribut montant
+     *
+     * @param montant nouvelle valeur de l'attribut
+     */
+    public Location setMontant(double montant) {
+        this.montant = montant;
+        return this;
     }
 }
