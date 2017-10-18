@@ -11,7 +11,6 @@ import java.util.Iterator;
 import articles.Article;
 import articles.ArticleComparator;
 import exception.ArticleIndispoException;
-import exception.LocationImpossibleException;
 
 /**
  * Classe permettant de modéliser un Magasin
@@ -24,8 +23,6 @@ public class Magasin {
     private Archive archive;
     private ArrayList<Location> locations;
     private ArrayList<Client> clients;
-
-    public static DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     public static final String[] filtres = {"refCroiss", "refDecroiss", "prixCroiss", "prixDecroiss", "marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
 
@@ -85,16 +82,14 @@ public class Magasin {
     public boolean loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException {
         try {
             if (this.checkDispoLocation(articles)) {
-                Date startDate = format.parse(dateDebut);
-                Date endDate = format.parse(dateFin);
-                String newDateDebutString = format.format(startDate);
-                String newDateFinString = format.format(endDate);
                 double montant = 0.0;
                 for (Article a : articles.keySet()) {
                     a.decrementeDispo(articles.get(a));
                     montant += a.getPrix_j() * articles.get(a);
                     this.majListeArticles(a);
                 }
+                Date startDate = stringToDate(dateDebut);
+                Date endDate = stringToDate(dateFin);
                 Location loc = new Location(startDate, endDate, articles, client, montant);
                 this.locations.add(loc);
                 client.ajouteLocation(loc);
@@ -170,5 +165,29 @@ public class Magasin {
             }
         }
         return res;
+    }
+
+    /**
+     * Méthode permettant de prendre une date et de la transformer en string au format dd/MM/yyyy
+     * @param date - La date à retourner en String
+     * @return newDateString - La date en String
+     * @throws ParseException
+     */
+    public static String dateToString(Date date) throws ParseException {
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String newDateString = format.format(date);
+        return newDateString;
+    }
+
+    /**
+     * Méthode permettant de prendre une date et de la transformer en string au format dd/MM/yyyy
+     * @param stringDate - La string à parser en date
+     * @return date - La date parsée
+     * @throws ParseException
+     */
+    public static Date stringToDate(String stringDate) throws ParseException {
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = format.parse(stringDate);
+        return date;
     }
 }

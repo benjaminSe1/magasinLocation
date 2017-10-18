@@ -1,9 +1,12 @@
 package main;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 
 import articles.Article;
+
+import static main.Magasin.dateToString;
 
 /**
  * Created by E149769S on 19/09/17.
@@ -23,9 +26,17 @@ public class Location {
         this.montant = montant;
     }
 
-    public String toString(){
-        String s = "\nLocation : \nLocation du : " + dateDebut + " jusqu'au " + dateFin + "\nMontant de la location : " + this.montant + " € \nListe des articles loués : ";
-        for(Article a : articles.keySet()){
+    public String toString() {
+        String startDate = null;
+        String endDate = null;
+        try {
+            startDate = dateToString(dateDebut);
+            endDate = dateToString(dateFin);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String s = "\nLocation : \nLocation du : " + startDate + " jusqu'au " + endDate + "\nMontant de la location : " + this.montant + " € \nListe des articles loués : ";
+        for (Article a : articles.keySet()) {
             s += a.toString();
             s += " nombre d'articles loués : " + this.articles.get(a) + "\n";
         }
