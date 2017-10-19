@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -193,12 +194,20 @@ public class Magasin {
         client.afficheLocation();
     }
 
-    /**
-     * Méthode qui permet d'archiver une location
+    /**Méthode qui permet d'archiver des locations pour moins donné
      *
-     * @param location - La location que l'on veut archiver
+     * @throws ParseException
      */
-    public void archive(Location location) {
+    public void archiveMois(int mois) throws ParseException {
+        for (Location loc : this.locations) {
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(loc.getDateFin());
+            int moisLoc = cal.get(Calendar.MONTH);
+            moisLoc++; // pour que 1 corresponde à janvier
+            if (moisLoc == mois) {
+                archive.archiver(loc);
+            }
+        }
     }
 
     /**
