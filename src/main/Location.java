@@ -161,4 +161,12 @@ public class Location {
         this.montant = montant;
         return this;
     }
+
+    public void isArchived() {
+        this.isArchived = true;
+    }
+
+    public boolean getIsArchived(){
+        return this.isArchived;
+    }
 }

@@ -196,16 +196,22 @@ public class Magasin {
     /**Méthode qui permet d'archiver des locations pour moins donné
      */
     public void archiveMois(int mois) {
+        boolean isChange = false;
         for (Location loc : this.locations) {
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(loc.getDateFin());
-            int moisLoc = cal.get(Calendar.MONTH);
-            moisLoc++; // pour que 1 corresponde à janvier
-            if (moisLoc == mois) {
-                archive.archiver(loc);
+            if(!loc.getIsArchived()) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(loc.getDateFin());
+                int moisLoc = cal.get(Calendar.MONTH);
+                moisLoc++; // pour que 1 corresponde à janvier
+                if (moisLoc == mois) {
+                    System.out.println("iiiiiiiiiiiiicccccccccccccciiiiiiiiiiiiii");
+                    isChange = true;
+                    this.archive.archiver(loc);
+                }
             }
         }
-        System.out.println("L'archive a bien été créée ou mise à jour.");
+        if(isChange)System.out.println("L'archive a bien été créée ou mise à jour.");
+        else System.out.println("Aucun changement effectué");
     }
 
     /**

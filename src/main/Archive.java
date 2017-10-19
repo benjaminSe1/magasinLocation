@@ -28,9 +28,9 @@ public class Archive {
         moisFin++;
         String file_path = "test";
         if (moisFin < 10) {
-            file_path = anneeFin + "0" + moisFin + ".txt";
+            file_path = "ArchiveLoc/" + anneeFin + "0" + moisFin + ".txt";
         } else {
-            file_path = anneeFin + moisFin + ".loc";
+            file_path = "ArchiveLoc/" + anneeFin + moisFin + ".loc";
         }
         File fichier = new File(file_path);
         if (!fichier.exists()) {
@@ -54,6 +54,7 @@ public class Archive {
             for (String line : lines) {
                 write_file.writeUTF(line);
             }
+            loc.isArchived();
             write_file.close();
         } catch (IOException e) {
             System.out.println("Ce fichier n'existe pas ou il est impossible d'écrire à l'intérieur.\n");

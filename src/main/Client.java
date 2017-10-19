@@ -53,7 +53,7 @@ public class Client {
      */
     public void afficheLocation() {
         System.out.println("Client : " + this.nom + " " + this.prenom);
-        System.out.println("Liste des locations du client : " + locations.toString());
+        System.out.println("Liste des locations du client : \n" + locations.toString());
     }
 
     public String getNom() {
