@@ -230,14 +230,10 @@ public class Magasin {
         double res = 0.0;
         Date dateDebut = stringToDate(stringDebut);
         Date dateFin = stringToDate(stringFin);
-        int i = 0;
-        int j = 0;
         for(Location loc : this.locations){
             if(loc.getDateDebut().after(dateDebut) && loc.getDateFin().before(dateFin)){
                 res += loc.getMontant();
-                j++;
             }
-            i++;
         }
         return res;
     }
