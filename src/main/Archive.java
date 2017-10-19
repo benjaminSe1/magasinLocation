@@ -28,9 +28,9 @@ public class Archive {
         moisFin++;
         String file_path = "test";
         if (moisFin < 10) {
-            file_path = "Miniprojet/ArchiveLoc/" + anneeFin + "0" + moisFin + ".txt";
+            file_path = "ArchiveLoc/" + anneeFin + "0" + moisFin + ".txt";
         } else {
-            file_path = "Miniprojet/ArchiveLoc/" + anneeFin + moisFin + ".loc";
+            file_path = "ArchiveLoc/" + anneeFin + moisFin + ".loc";
         }
         File fichier = new File(file_path);
         if (!fichier.exists()) {
