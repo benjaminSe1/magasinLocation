@@ -291,4 +291,20 @@ public class Magasin {
         }
         return false;
     }
+
+    /**
+     * Méthode qui permet de récupérer un client à partir de son nom et de son prénom
+     * @param nom Le nom du client
+     * @param prenom Le prenom du client
+     * @return client - Le client recherché
+     */
+    public Client getClient(String nom, String prenom) {
+        Client client = null;
+        for(Client c : this.getClients()){
+            if(c.getClient(nom, prenom) != null){
+                client = c.getClient(nom, prenom);
+            }
+        }
+        return client;
+    }
 }
