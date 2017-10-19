@@ -204,7 +204,6 @@ public class Magasin {
                 int moisLoc = cal.get(Calendar.MONTH);
                 moisLoc++; // pour que 1 corresponde à janvier
                 if (moisLoc == mois) {
-                    System.out.println("iiiiiiiiiiiiicccccccccccccciiiiiiiiiiiiii");
                     isChange = true;
                     this.archive.archiver(loc);
                 }
