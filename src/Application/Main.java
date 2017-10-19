@@ -47,10 +47,10 @@ public class Main {
         tabLoc1.put(a1, 1);
 
         HashMap<Article, Integer> tabLoc2 = new HashMap<>();
-        tabLoc1.put(a2, 1);
+        tabLoc2.put(a2, 1);
 
         HashMap<Article, Integer> tabLoc3 = new HashMap<>();
-        tabLoc1.put(a3, 1);
+        tabLoc3.put(a3, 1);
 
         Location l1 = m1.loue(tabLoc1, "17/10/2017", "18/10/2017", c1);
         Location l2 = m1.loue(tabLoc2, "19/10/2017", "20/10/2017", c2);
@@ -142,8 +142,8 @@ public class Main {
                     String prenom = scanner.next();
                     if(!m1.existeClient(nom, prenom)){
                         System.out.println("Le client n'a jamais effectué de location dans le magasin.");
-                    }else{
-
+                    } else {
+                        m1.getClient(nom, prenom).afficheLocation();
                     }
                     break;
                 case 4:
