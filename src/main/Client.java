@@ -80,7 +80,7 @@ public class Client {
     }
 
     public Client getClient(String nom, String prenom){
-        if (this.getNom() == nom && this.getPrenom() == prenom) {
+        if (this.getNom().equals(nom) && this.getPrenom().equals(prenom)) {
             return this;
         } else {
             return null;

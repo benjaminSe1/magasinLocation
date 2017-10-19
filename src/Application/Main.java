@@ -142,6 +142,8 @@ public class Main {
                     String prenom = scanner.next();
                     if(!m1.existeClient(nom, prenom)){
                         System.out.println("Le client n'a jamais effectué de location dans le magasin.");
+                    }else{
+
                     }
                     break;
                 case 4:
