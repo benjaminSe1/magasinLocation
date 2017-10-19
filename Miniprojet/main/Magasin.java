@@ -1,5 +1,10 @@
 package main;
 
+import articles.Article;
+import articles.ArticleComparator;
+import exception.ArticleIndispoException;
+import exception.LocationImpossibleException;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,11 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
-
-import articles.Article;
-import articles.ArticleComparator;
-import exception.ArticleIndispoException;
-import exception.LocationImpossibleException;
 
 /**
  * Classe permettant de modéliser un Magasin
@@ -39,12 +39,11 @@ public class Magasin {
      *
      * @param nom      - Le nom du magasin
      * @param articles - La liste des articles du magasin
-     * @param archive  - L'archive du magasin
      */
-    public Magasin(String nom, ArrayList<Article> articles, Archive archive) {
+    public Magasin(String nom, ArrayList<Article> articles) {
         this.nom = nom;
         this.articlesDispos = new ArrayList<>();
-        this.archive = archive;
+        this.archive = new Archive();
         this.locations = new ArrayList<>();
         this.clients = new ArrayList<>();
         this.articlesNonDispos = new ArrayList<>();
@@ -87,7 +86,9 @@ public class Magasin {
      * @param dateFin   - date de fin de la location
      * @param client    - client qui loue
      * @return la location créée
-     * @throws ArticleIndispoException
+     * @throws ArticleIndispoException     Exception levée lorsqu'un article est demandé dans une location en quantité non disponible
+     * @throws LocationImpossibleException Exception levée lorsqu'une location est impossible à effectuer
+     * @throws ParseException              Exception levée lors d'une erreur de parsing de la date
      */
     public Location loue(HashMap<Article, Integer> articles, String dateDebut, String dateFin, Client client) throws ArticleIndispoException, LocationImpossibleException, ParseException {
         if (this.checkDispoLocation(articles)) {
@@ -204,7 +205,7 @@ public class Magasin {
      *
      * @param date - La date à retourner en String
      * @return newDateString - La date en String
-     * @throws ParseException
+     * @throws ParseException Exception levée lors d'une erreur de parsing de la date
      */
     public static String dateToString(Date date) throws ParseException {
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -217,11 +218,27 @@ public class Magasin {
      *
      * @param stringDate - La string à parser en date
      * @return date - La date parsée
-     * @throws ParseException
+     * @throws ParseException Exception levée lors d'une erreur de parsing de la date
      */
     public static Date stringToDate(String stringDate) throws ParseException {
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date date = format.parse(stringDate);
         return date;
+    }
+
+    public double getMontantPeriode(String stringDebut, String stringFin) throws ParseException {
+        double res = 0.0;
+        Date dateDebut = stringToDate(stringDebut);
+        Date dateFin = stringToDate(stringFin);
+        int i = 0;
+        int j = 0;
+        for(Location loc : this.locations){
+            if(loc.getDateDebut().after(dateDebut) && loc.getDateFin().before(dateFin)){
+                res += loc.getMontant();
+                j++;
+            }
+            i++;
+        }
+        return res;
     }
 }

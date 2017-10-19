@@ -1,52 +1,61 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
+import java.io.*;
+import java.util.Calendar;
+import java.util.LinkedList;
 
-import articles.Article;
-
-/**Classe qui permet de représenter une archive de magasin
- * Created by E149769S on 19/09/17.
- */
 public class Archive {
 
-    private ArrayList<Location> locations;
-
-    /**
-     * Constructeur de la classe Archive qui prend en paramètre une liste de locations
-     * @param locations
-     */
-    public Archive(ArrayList<Location> locations) {
-        this.locations = locations;
-    }
-
-    /**
-     * Constructeur de la classe Archive sans paramètre
-     */
     public Archive() {
-        this.locations = new ArrayList<>();
     }
 
     /**
-     * Méthode qui permet d'archiver une location
-     * @param location Location à archiver
+     * Méthode qui archive une location dans un fichier mensuel .loc
+     * Si le fichier .loc est déja créé (i.e. si des locations ont déjà été archivé dans le mois), Nous récupérons le contenu du fichier éxistant, faisons un nouveau fichier avec ce contenu et rajoutons le nouveau à la fin
+     *
+     * @param loc La location à archiver
      */
-    public void archiver(Location location) {
-        Date dateDebut = location.getDateDebut();
-        Date dateFin = location.getDateFin();
-        HashMap<Article, Integer> articles = location.getArticles();
-        Client client = location.getClient();
-        double montant = location.getMontant();
+    public void archiver(Location loc) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(loc.getDateFin());
+        int moisFin = cal.get(Calendar.MONTH);
+        int anneeFin = cal.get(Calendar.YEAR);
+        moisFin++;
+        String file_path = "test";
+        if (moisFin < 10) file_path = "Miniprojet/ArchiveLoc/" + anneeFin + "0" + moisFin + ".txt";
+        else file_path = "Miniprojet/ArchiveLoc/" + anneeFin + moisFin + ".loc";
+        File fichier = new File(file_path);
+
+        if (!fichier.exists()) {
+            try {
+                fichier.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Ce fichier existe déjà.\n");
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            DataInputStream read_file = new DataInputStream(new FileInputStream(file_path));
+            LinkedList<String> lines = new LinkedList<>();
+            while (read_file.available() > 0) {
+                lines.add(read_file.readUTF());
+            }
+            read_file.close();
+
+            //Ecriture de la nouvelle location
+            DataOutputStream write_file = new DataOutputStream(new FileOutputStream(file_path));
+            lines.add(loc.toString() + "\n");
+            for (String line : lines) {
+                write_file.writeUTF(line);
+            }
+            write_file.close();
 
 
-    }
-
-    /**
-     * Méthode qui permet d'afficher les locations archivées pour un mois et une année donnée
-     * @param annee Annee de la recherche à partir de la création du magasin : 0 --> 0 à 1 an , 1 --> 1 à 2 an, etc...
-     * @param numMois Mois de la recherche (1 -->Janvier, 2 --> Fevrier, etc...)
-     */
-    public void afficher(int annee, int numMois) {
+        } catch (IOException e) {
+            System.out.println("Ce fichier n'existe pas ou il est impossible d'écrire à l'intérieur.\n");
+            e.printStackTrace();
+        }
     }
 }
+

@@ -1,9 +1,5 @@
 package tests;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import articles.Article;
 import exception.ArticleIndispoException;
 import exception.LocationImpossibleException;
@@ -11,6 +7,10 @@ import main.Archive;
 import main.Client;
 import main.Location;
 import main.Magasin;
+
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MagasinTest {
 
@@ -28,7 +28,7 @@ public class MagasinTest {
         articlesDispo.add(a5);
         Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05");
         Archive archive = new Archive();
-        Magasin mag = new Magasin("monMag", articlesDispo, archive);
+        Magasin mag = new Magasin("monMag", articlesDispo);
         System.out.println(mag.afficheArticle("refCroiss"));
         HashMap<Article, Integer> tabLoc1 = new HashMap<>();
         tabLoc1.put(a1, 1);

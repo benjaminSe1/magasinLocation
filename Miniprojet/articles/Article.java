@@ -18,11 +18,12 @@ public class Article {
 
     /**
      * Constructor
+     *
      * @param reference - La référence de l'article
-     * @param marque - La marque de l'article
-     * @param modele - Le modèle de l'article
-     * @param prix_j - Le prix par jour de l'article
-     * @param nbDispo - Le nombre d'article disponnibles
+     * @param marque    - La marque de l'article
+     * @param modele    - Le modèle de l'article
+     * @param prix_j    - Le prix par jour de l'article
+     * @param nbDispo   - Le nombre d'article disponnibles
      */
     public Article(String reference, String marque, String modele, double prix_j, int nbDispo) {
         this.reference = reference;
@@ -34,6 +35,7 @@ public class Article {
 
     /**
      * Méthode permettant de définir l'affichage d'un article.
+     *
      * @return String - L'affichage d'un article sous forme de String.
      */
     public String toString() {
@@ -42,6 +44,7 @@ public class Article {
 
     /**
      * Méthode permettant de récupérer la référence de l'article
+     *
      * @return String - La référence de l'article
      */
     public String getReference() {
@@ -50,6 +53,7 @@ public class Article {
 
     /**
      * Méthode permettant de récupérer la marque de l'article
+     *
      * @return String - La marque de l'article
      */
     public String getMarque() {
@@ -58,6 +62,7 @@ public class Article {
 
     /**
      * Méthode permettant de récupérer le modèle de l'article
+     *
      * @return String - Le modèle de l'article
      */
     public String getModele() {
@@ -66,6 +71,7 @@ public class Article {
 
     /**
      * Méthode permettant de récupérer le prix par jour de l'article
+     *
      * @return Double - Le prix par jour de l'article
      */
     public double getPrix_j() {
@@ -74,6 +80,7 @@ public class Article {
 
     /**
      * Méthode permettant de récupérer le nombre d'articles disponnibles
+     *
      * @return int - Le nombre d'articles disponnibles
      */
     public int getNbDispo() {
@@ -82,6 +89,7 @@ public class Article {
 
     /**
      * Méthode permettant de mettre à jour le nombre d'articles disponnibles
+     *
      * @param nbDispo - Le nombre d'articles disponnibles
      */
     public void setNbDispo(int nbDispo) {
@@ -90,6 +98,7 @@ public class Article {
 
     /**
      * Méthode permettant de redéfinir la méthode equals
+     *
      * @param a - L'article à comparer
      * @return Boolean - True si vrai, False sinon
      */
@@ -98,7 +107,8 @@ public class Article {
     }
 
     /**
-     *Méthode qui permet de décrémenter le nombre d'articles dispo de la classe.
+     * Méthode qui permet de décrémenter le nombre d'articles dispo de la classe.
+     *
      * @param nbADecrementer - Le nombre d'articles à enlever au nombre d'articles disponnibles
      * @return Boolean - True si l'opération est possible, False sinon.
      */
@@ -112,7 +122,8 @@ public class Article {
     }
 
     /**
-     *Méthode qui permet d'incrémenter le nombre d'articles dispo de la classe.
+     * Méthode qui permet d'incrémenter le nombre d'articles dispo de la classe.
+     *
      * @param nbAIncrementer - Le nombre d'articles à ajouter au nombre d'articles disponnibles
      */
     public void incrementeDispo(int nbAIncrementer) {

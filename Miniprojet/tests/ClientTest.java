@@ -1,14 +1,14 @@
 package tests;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-
 import articles.Article;
 import exception.LocationImpossibleException;
 import main.Client;
 import main.Location;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by E149769S on 21/09/17.

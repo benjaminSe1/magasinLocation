@@ -1,16 +1,16 @@
 package tests;
 
+import articles.Article;
+import exception.LocationImpossibleException;
+import main.Archive;
+import main.Client;
+import main.Location;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
-import articles.Article;
-import exception.LocationImpossibleException;
-import main.ArchiveWriter;
-import main.Client;
-import main.Location;
 
 public class ArchiveTest {
 
@@ -39,8 +39,8 @@ public class ArchiveTest {
         Location l2 = new Location(dateD, datef, articles2, c1);
         locations.add(l1);
         locations.add(l2);
-        ArchiveWriter archiveW = new ArchiveWriter();
-        archiveW.writeIntoFile(l1);
-        archiveW.writeIntoFile(l2);
+        Archive archiveW = new Archive();
+        archiveW.archiver(l1);
+        archiveW.archiver(l2);
     }
 }

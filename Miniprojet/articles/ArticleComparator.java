@@ -12,6 +12,7 @@ public class ArticleComparator implements Comparator<Article> {
 
     /**
      * Constructor
+     *
      * @param filtre - Le filtre de la recherche
      */
     public ArticleComparator(String filtre) {
@@ -20,6 +21,7 @@ public class ArticleComparator implements Comparator<Article> {
 
     /**
      * Méthode permettant de définir le résultat de la recherche.
+     *
      * @param o1 - Le premier article
      * @param o2 - Le deuxième article
      * @return - Le classement des articles selon le filtre choisi

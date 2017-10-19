@@ -1,15 +1,16 @@
 package main;
 
+import articles.Article;
+import exception.LocationImpossibleException;
+
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 
-import articles.Article;
-import exception.LocationImpossibleException;
-
 import static main.Magasin.dateToString;
 
-/**Classe permettant de modéliser une location
+/**
+ * Classe permettant de modéliser une location
  * Created by E149769S on 19/09/17.
  */
 public class Location {
@@ -29,13 +30,15 @@ public class Location {
 
     /**
      * Constructeur de la classe Location
+     *
      * @param dateDebut représente la date de début de la location
-     * @param dateFin représente la date de fin de la location
-     * @param articles la Hasmap d'articles loués : pair : <Article loué, nombre loué>
-     * @param client Le client qui loue ces articles
+     * @param dateFin   représente la date de fin de la location
+     * @param articles  la Hasmap d'articles loués : pair : Article loué, nombre loué
+     * @param client    Le client qui loue ces articles
+     * @throws LocationImpossibleException Exception levée lorsqu'une location est impossible à effectuer
      */
     public Location(Date dateDebut, Date dateFin, HashMap<Article, Integer> articles, Client client) throws LocationImpossibleException {
-        if(dateDebut.after(dateFin)){
+        if (dateDebut.after(dateFin)) {
             throw new LocationImpossibleException("Date de début de location doit être avant date de fin de location");
         }
         this.dateDebut = dateDebut;
@@ -44,13 +47,14 @@ public class Location {
         this.client = client;
         this.isArchived = false;
         this.montant = 0.0;
-        for(Article a : articles.keySet()){
-            this.montant = this.montant + (a.getPrix_j()*articles.get(a));
+        for (Article a : articles.keySet()) {
+            this.montant = this.montant + (a.getPrix_j() * articles.get(a));
         }
     }
 
     /**
      * Méthode qui permet d'afficher les données d'une locations
+     *
      * @return La chaine de caractère représenentant la Location
      */
     public String toString() {
@@ -72,6 +76,7 @@ public class Location {
 
     /**
      * Getter de l'attribut articles
+     *
      * @return la HashMap d'articles
      */
     public HashMap<Article, Integer> getArticles() {
@@ -80,7 +85,8 @@ public class Location {
 
     /**
      * Méthode qui set l'attribu articles
-     * @param articles la HashMap<Article, Integer> a laquelle set l'attibut articles
+     *
+     * @param articles la HashMap{@literal <}Article, Integer{@literal >} a laquelle set l'attibut articles
      */
     public void setArticles(final HashMap<Article, Integer> articles) {
         this.articles = articles;

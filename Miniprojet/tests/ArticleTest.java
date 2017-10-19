@@ -1,9 +1,9 @@
 package tests;
 
-import java.util.ArrayList;
-
 import articles.Article;
 import articles.ArticleComparator;
+
+import java.util.ArrayList;
 
 public class ArticleTest {
 
