@@ -1,9 +1,2 @@
-/*
-Afficher l'ensemble des locations en cours pour un client donné :
-    -les locations en cours?
-    -optimiser l'affichage
-*/
-Archiver les locations au moment de la restitution du matériel dans des fichiers de location mensuels.
-Ainsi, toutes les locations avec une date de retour en novembre 2017, seront archivées dans un fichier texte nommé 201711.loc
-
-Calculer le montant total de ses recettes sur une période donnée
+Commenter toutes les classes de tests dont la MAIN!!!
+Le cas de test transversal du case 7

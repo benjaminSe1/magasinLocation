@@ -2,6 +2,7 @@ package Application;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -16,6 +17,8 @@ import exception.LocationImpossibleException;
 import main.Client;
 import main.Location;
 import main.Magasin;
+
+import static main.Magasin.stringToDate;
 
 /**
  * Classe principale permettant de tester notre application.
@@ -52,9 +55,18 @@ public class Main {
         HashMap<Article, Integer> tabLoc3 = new HashMap<>();
         tabLoc3.put(a3, 1);
 
-        Location l1 = m1.loue(tabLoc1, "17/10/2017", "18/10/2017", c1);
-        Location l2 = m1.loue(tabLoc2, "19/10/2017", "20/10/2017", c2);
-        Location l3 = m1.loue(tabLoc3, "21/10/2017", "22/10/2017", c3);
+        Date dateDebutL1 = stringToDate("17/10/2017");
+        Date dateFinL1 = stringToDate("18/10/2017");
+
+        Date dateDebutL2 = stringToDate("19/10/2017");
+        Date dateFinL2 = stringToDate("20/10/2017");
+
+        Date dateDebutL3 = stringToDate("21/10/2017");
+        Date dateFinL3 = stringToDate("22/10/2017");
+
+        Location l1 = new Location(dateDebutL1, dateFinL1, tabLoc1, c1);
+        Location l2 = new Location(dateDebutL2, dateFinL2, tabLoc2, c2);
+        Location l3 = new Location(dateDebutL3, dateFinL3, tabLoc3, c3);
 
 
         Scanner scanner = new Scanner(System.in);
@@ -170,7 +182,7 @@ public class Main {
                     String choixDate1 = scanner.next();
                     System.out.println("Entrez la date de fin : ");
                     String choixDate2 = scanner.next();
-                    m1.getMontantPeriode(choixDate1, choixDate2);
+                    System.out.println(m1.getMontantPeriode(choixDate1, choixDate2));
                     break;
                 case 6:
                     clearScreen();
