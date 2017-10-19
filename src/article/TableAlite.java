@@ -1,12 +1,12 @@
-package articles;
+package article;
 
 /**
- * Classe permettant de modéliser l'article LitMedicalise.
+ * Classe permettant de modéliser l'article TableAlite.
  * Created by E149769S on 19/09/17.
  */
-public class LitMedicalise extends MobilierMedical {
+public class TableAlite extends MobilierMedical {
 
-    private boolean isElectric;
+    private int nbRoulette;
 
     /**
      * Constructor
@@ -17,7 +17,7 @@ public class LitMedicalise extends MobilierMedical {
      * @param prix_j    - Le prix par jour de l'article
      * @param nbDispo   - Le nombre d'article disponnibles
      */
-    public LitMedicalise(String reference, String marque, String modele, double prix_j, int nbDispo) {
+    public TableAlite(String reference, String marque, String modele, double prix_j, int nbDispo) {
         super(reference, marque, modele, prix_j, nbDispo);
     }
 }

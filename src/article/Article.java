@@ -1,4 +1,4 @@
-package articles;
+package article;
 
 /**
  * Classe permettant de modéliser un Article
@@ -7,13 +7,9 @@ package articles;
 public class Article {
 
     private String reference;
-
     private String marque;
-
     private String modele;
-
     private double prix_j;
-
     private int nbDispo;
 
     /**

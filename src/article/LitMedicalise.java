@@ -1,14 +1,12 @@
-package articles;
+package article;
 
 /**
- * Classe permettant de modéliser l'article MobilierMedical.
+ * Classe permettant de modéliser l'article LitMedicalise.
  * Created by E149769S on 19/09/17.
  */
-public class MobilierMedical extends Article {
+public class LitMedicalise extends MobilierMedical {
 
-    private String dimension;
-
-    private double poidsMax;
+    private boolean isElectric;
 
     /**
      * Constructor
@@ -19,7 +17,7 @@ public class MobilierMedical extends Article {
      * @param prix_j    - Le prix par jour de l'article
      * @param nbDispo   - Le nombre d'article disponnibles
      */
-    public MobilierMedical(String reference, String marque, String modele, double prix_j, int nbDispo) {
+    public LitMedicalise(String reference, String marque, String modele, double prix_j, int nbDispo) {
         super(reference, marque, modele, prix_j, nbDispo);
     }
 }

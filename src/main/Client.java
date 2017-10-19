@@ -9,13 +9,9 @@ import java.util.ArrayList;
 public class Client {
 
     private String nom;
-
     private String prenom;
-
     private String adresse;
-
     private String telephone;
-
     private ArrayList<Location> locations;
 
     /**

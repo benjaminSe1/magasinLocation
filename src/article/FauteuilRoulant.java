@@ -1,16 +1,13 @@
-package articles;
+package article;
 
 /**
- * Classe permettant de modéliser l'article MatelasAir.
+ * Classe permettant de modéliser l'article FauteuilRoulant.
  * Created by E149769S on 19/09/17.
  */
-public class MatelasAir extends MobilierMedical {
+public class FauteuilRoulant extends Article {
 
-    private String dimension;
-
-    private double poidsMax;
-
-    private double tempsGonflage;
+    private double largeurAssise;
+    private double poids;
 
     /**
      * Constructor
@@ -21,7 +18,7 @@ public class MatelasAir extends MobilierMedical {
      * @param prix_j    - Le prix par jour de l'article
      * @param nbDispo   - Le nombre d'article disponnibles
      */
-    public MatelasAir(String reference, String marque, String modele, double prix_j, int nbDispo) {
+    public FauteuilRoulant(String reference, String marque, String modele, double prix_j, int nbDispo) {
         super(reference, marque, modele, prix_j, nbDispo);
     }
 }

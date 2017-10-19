@@ -1,10 +1,5 @@
 package main;
 
-import articles.Article;
-import articles.ArticleComparator;
-import exception.ArticleIndispoException;
-import exception.LocationImpossibleException;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +8,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import article.Article;
+import article.ArticleComparator;
+import exception.ArticleIndispoException;
+import exception.LocationImpossibleException;
+
 /**
  * Classe permettant de modéliser un Magasin
  * Created by E145725x on 19/09/17.
@@ -20,17 +20,11 @@ import java.util.Iterator;
 public class Magasin {
 
     private String nom;
-
     private ArrayList<Article> articlesDispos;
-
     private ArrayList<Article> articlesNonDispos;
-
     private Archive archive;
-
     private ArrayList<Location> locations;
-
     private ArrayList<Client> clients;
-
     public static final String[] filtres = {"refCroiss", "refDecroiss", "prixCroiss", "prixDecroiss", "marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
 
     /**
@@ -85,7 +79,7 @@ public class Magasin {
      * @param dateDebut - date de début de la location
      * @param dateFin   - date de fin de la location
      * @param client    - client qui loue
-     * @return la location créée
+     * @return la location créée qui est effectuée
      * @throws ArticleIndispoException     Exception levée lorsqu'un article est demandé dans une location en quantité non disponible
      * @throws LocationImpossibleException Exception levée lorsqu'une location est impossible à effectuer
      * @throws ParseException              Exception levée lors d'une erreur de parsing de la date
@@ -94,7 +88,6 @@ public class Magasin {
         if (this.checkDispoLocation(articles)) {
             Date startDate = stringToDate(dateDebut);
             Date endDate = stringToDate(dateFin);
-
             for (Article a : articles.keySet()) {
                 a.decrementeDispo(articles.get(a));
                 this.majListeArticles(a);
@@ -106,7 +99,31 @@ public class Magasin {
                 this.clients.add(client);
             }
             return loc;
+        } else {
+            throw new ArticleIndispoException("Un des articles est indispo");
+        }
+    }
 
+    /**Méthode qui permet d'effectuer une location.
+     *
+     * @param loc La location à effectuer
+     * @throws ArticleIndispoException     Exception levée lorsqu'un article est demandé dans une location en quantité non disponible
+     * @throws LocationImpossibleException Exception levée lorsqu'une location est impossible à effectuer
+     * @throws ParseException              Exception levée lors d'une erreur de parsing de la date
+     */
+    public void loue(Location loc) throws ArticleIndispoException, LocationImpossibleException, ParseException {
+        HashMap<Article, Integer> articles = loc.getArticles();
+        Client client = loc.getClient();
+        if (this.checkDispoLocation(articles)) {
+            for (Article a : articles.keySet()) {
+                a.decrementeDispo(articles.get(a));
+                this.majListeArticles(a);
+            }
+            this.locations.add(loc);
+            client.ajouteLocation(loc);
+            if (!this.clients.contains(client)) {
+                this.clients.add(client);
+            }
         } else {
             throw new ArticleIndispoException("Un des articles est indispo");
         }
@@ -230,8 +247,8 @@ public class Magasin {
         double res = 0.0;
         Date dateDebut = stringToDate(stringDebut);
         Date dateFin = stringToDate(stringFin);
-        for(Location loc : this.locations){
-            if(loc.getDateDebut().after(dateDebut) && loc.getDateFin().before(dateFin)){
+        for (Location loc : this.locations) {
+            if (loc.getDateDebut().after(dateDebut) && loc.getDateFin().before(dateFin)) {
                 res += loc.getMontant();
             }
         }

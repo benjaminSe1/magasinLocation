@@ -1,16 +1,15 @@
-package tests;
-
-import articles.Article;
-import exception.ArticleIndispoException;
-import exception.LocationImpossibleException;
-import main.Archive;
-import main.Client;
-import main.Location;
-import main.Magasin;
+package test;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import article.Article;
+import exception.ArticleIndispoException;
+import exception.LocationImpossibleException;
+import main.Client;
+import main.Location;
+import main.Magasin;
 
 /**
  * Created by E145725X on 19/10/17.
