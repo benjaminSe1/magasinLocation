@@ -250,6 +250,13 @@ public class Magasin {
         return date;
     }
 
+    /**
+     * Méthode permettant de calculer le montant de toutes les locations pour une période donnée
+     * @param stringDebut - La date de début de la période
+     * @param stringFin - La date de fin de la période
+     * @return res - Le montant de toutes les location pour la période donnée
+     * @throws ParseException - Exception levée lors d'une erreur de parsing de la date
+     */
     public double getMontantPeriode(String stringDebut, String stringFin) throws ParseException {
         double res = 0.0;
         Date dateDebut = stringToDate(stringDebut);
@@ -262,6 +269,10 @@ public class Magasin {
         return res;
     }
 
+    /**
+     * Accésseur de l'attribut clients
+     * @return clients - La liste des clients
+     */
     public ArrayList<Client> getClients() {
         return this.clients;
     }
