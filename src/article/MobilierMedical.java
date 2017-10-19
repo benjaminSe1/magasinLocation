@@ -7,7 +7,6 @@ package article;
 public class MobilierMedical extends Article {
 
     private String dimension;
-
     private double poidsMax;
 
     /**

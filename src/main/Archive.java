@@ -1,6 +1,11 @@
 package main;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.LinkedList;
 
@@ -22,10 +27,12 @@ public class Archive {
         int anneeFin = cal.get(Calendar.YEAR);
         moisFin++;
         String file_path = "test";
-        if (moisFin < 10) file_path = "Miniprojet/ArchiveLoc/" + anneeFin + "0" + moisFin + ".txt";
-        else file_path = "Miniprojet/ArchiveLoc/" + anneeFin + moisFin + ".loc";
+        if (moisFin < 10) {
+            file_path = "Miniprojet/ArchiveLoc/" + anneeFin + "0" + moisFin + ".txt";
+        } else {
+            file_path = "Miniprojet/ArchiveLoc/" + anneeFin + moisFin + ".loc";
+        }
         File fichier = new File(file_path);
-
         if (!fichier.exists()) {
             try {
                 fichier.createNewFile();
@@ -34,7 +41,6 @@ public class Archive {
                 e.printStackTrace();
             }
         }
-
         try {
             DataInputStream read_file = new DataInputStream(new FileInputStream(file_path));
             LinkedList<String> lines = new LinkedList<>();
@@ -42,7 +48,6 @@ public class Archive {
                 lines.add(read_file.readUTF());
             }
             read_file.close();
-
             //Ecriture de la nouvelle location
             DataOutputStream write_file = new DataOutputStream(new FileOutputStream(file_path));
             lines.add(loc.toString() + "\n");
@@ -50,8 +55,6 @@ public class Archive {
                 write_file.writeUTF(line);
             }
             write_file.close();
-
-
         } catch (IOException e) {
             System.out.println("Ce fichier n'existe pas ou il est impossible d'écrire à l'intérieur.\n");
             e.printStackTrace();

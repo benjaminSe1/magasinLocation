@@ -1,11 +1,11 @@
 package main;
 
-import articles.Article;
-import exception.LocationImpossibleException;
-
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
+
+import article.Article;
+import exception.LocationImpossibleException;
 
 import static main.Magasin.dateToString;
 
@@ -16,17 +16,11 @@ import static main.Magasin.dateToString;
 public class Location {
 
     private Date dateDebut;
-
     private Date dateFin;
-
     private HashMap<Article, Integer> articles;
-
     private Client client;
-
     private double montant;
-
     private boolean isArchived;
-
 
     /**
      * Constructeur de la classe Location

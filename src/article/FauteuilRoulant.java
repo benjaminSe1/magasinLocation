@@ -7,7 +7,6 @@ package article;
 public class FauteuilRoulant extends Article {
 
     private double largeurAssise;
-
     private double poids;
 
     /**

@@ -7,9 +7,7 @@ package article;
 public class MatelasAir extends MobilierMedical {
 
     private String dimension;
-
     private double poidsMax;
-
     private double tempsGonflage;
 
     /**

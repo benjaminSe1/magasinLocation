@@ -7,7 +7,6 @@ package article;
 public class SouleveMalade extends Article {
 
     private double capacite;
-
     private double angle;
 
     /**

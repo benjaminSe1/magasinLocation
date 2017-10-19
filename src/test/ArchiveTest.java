@@ -1,16 +1,16 @@
 package test;
 
-import articles.Article;
-import exception.LocationImpossibleException;
-import main.Archive;
-import main.Client;
-import main.Location;
-
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+
+import article.Article;
+import exception.LocationImpossibleException;
+import main.Archive;
+import main.Client;
+import main.Location;
 
 public class ArchiveTest {
 

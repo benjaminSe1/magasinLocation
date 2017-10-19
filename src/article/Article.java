@@ -7,13 +7,9 @@ package article;
 public class Article {
 
     private String reference;
-
     private String marque;
-
     private String modele;
-
     private double prix_j;
-
     private int nbDispo;
 
     /**
