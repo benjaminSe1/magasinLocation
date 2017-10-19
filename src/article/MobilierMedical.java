@@ -1,4 +1,4 @@
-package articles;
+package article;
 
 /**
  * Classe permettant de modéliser l'article MobilierMedical.

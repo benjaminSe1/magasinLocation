@@ -1,14 +1,12 @@
-package articles;
+package article;
 
 /**
- * Classe permettant de modéliser l'article FauteuilRoulant.
+ * Classe permettant de modéliser l'article TableAlite.
  * Created by E149769S on 19/09/17.
  */
-public class FauteuilRoulant extends Article {
+public class TableAlite extends MobilierMedical {
 
-    private double largeurAssise;
-
-    private double poids;
+    private int nbRoulette;
 
     /**
      * Constructor
@@ -19,7 +17,7 @@ public class FauteuilRoulant extends Article {
      * @param prix_j    - Le prix par jour de l'article
      * @param nbDispo   - Le nombre d'article disponnibles
      */
-    public FauteuilRoulant(String reference, String marque, String modele, double prix_j, int nbDispo) {
+    public TableAlite(String reference, String marque, String modele, double prix_j, int nbDispo) {
         super(reference, marque, modele, prix_j, nbDispo);
     }
 }

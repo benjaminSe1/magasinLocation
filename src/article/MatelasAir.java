@@ -1,12 +1,16 @@
-package articles;
+package article;
 
 /**
- * Classe permettant de modéliser l'article TableAlite.
+ * Classe permettant de modéliser l'article MatelasAir.
  * Created by E149769S on 19/09/17.
  */
-public class TableAlite extends MobilierMedical {
+public class MatelasAir extends MobilierMedical {
 
-    private int nbRoulette;
+    private String dimension;
+
+    private double poidsMax;
+
+    private double tempsGonflage;
 
     /**
      * Constructor
@@ -17,7 +21,7 @@ public class TableAlite extends MobilierMedical {
      * @param prix_j    - Le prix par jour de l'article
      * @param nbDispo   - Le nombre d'article disponnibles
      */
-    public TableAlite(String reference, String marque, String modele, double prix_j, int nbDispo) {
+    public MatelasAir(String reference, String marque, String modele, double prix_j, int nbDispo) {
         super(reference, marque, modele, prix_j, nbDispo);
     }
 }
