@@ -1,21 +1,20 @@
-package tests;
+package test;
 
 import articles.Article;
 import exception.LocationImpossibleException;
+import main.Archive;
 import main.Client;
 import main.Location;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-/**
- * Created by E149769S on 21/09/17.
- */
-public class ClientTest {
+public class ArchiveTest {
 
-    public static void main(String[] args) throws LocationImpossibleException {
+    public static void main(String[] args) throws IOException, LocationImpossibleException {
         HashMap<Article, Integer> articles = new HashMap<Article, Integer>();
         HashMap<Article, Integer> articles2 = new HashMap<Article, Integer>();
         Article a1 = new Article("ref01", "Nike", "Modele1", 10.0, 5);
@@ -30,16 +29,18 @@ public class ClientTest {
         Date datef = null;
         try {
             dateD = dateFormat.parse("21/09/2017");
-            datef = dateFormat.parse("22/09/2017");
+            datef = dateFormat.parse("19/11/2017");
         } catch (Exception e) {
             System.err.println("Format de date invalide. Usage : dd/MM/YYYY");
             System.err.println(e.getMessage());
         }
-        ArrayList<Location> locations = new ArrayList<Location>();
+        ArrayList<Location> locations = new ArrayList<>();
         Location l1 = new Location(dateD, datef, articles, c1);
         Location l2 = new Location(dateD, datef, articles2, c1);
         locations.add(l1);
         locations.add(l2);
-        c1.afficheLocation();
+        Archive archiveW = new Archive();
+        archiveW.archiver(l1);
+        archiveW.archiver(l2);
     }
 }

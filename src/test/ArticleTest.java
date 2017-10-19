@@ -1,4 +1,4 @@
-package tests;
+package test;
 
 import articles.Article;
 import articles.ArticleComparator;

@@ -1,9 +1,8 @@
-package tests;
+package test;
 
 import articles.Article;
 import exception.ArticleIndispoException;
 import exception.LocationImpossibleException;
-import main.Archive;
 import main.Client;
 import main.Location;
 import main.Magasin;
