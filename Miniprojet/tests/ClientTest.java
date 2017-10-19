@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import articles.Article;
+import exception.LocationImpossibleException;
 import main.Client;
 import main.Location;
 
@@ -14,7 +15,7 @@ import main.Location;
  */
 public class ClientTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws LocationImpossibleException {
         HashMap<Article, Integer> articles = new HashMap<Article, Integer>();
         HashMap<Article, Integer> articles2 = new HashMap<Article, Integer>();
         Article a1 = new Article("ref01", "Nike", "Modele1", 10.0, 5);
@@ -35,8 +36,8 @@ public class ClientTest {
             System.err.println(e.getMessage());
         }
         ArrayList<Location> locations = new ArrayList<Location>();
-        Location l1 = new Location(dateD, datef, articles, c1, 0);
-        Location l2 = new Location(dateD, datef, articles2, c1, 0);
+        Location l1 = new Location(dateD, datef, articles, c1);
+        Location l2 = new Location(dateD, datef, articles2, c1);
         locations.add(l1);
         locations.add(l2);
         c1.afficheLocation();

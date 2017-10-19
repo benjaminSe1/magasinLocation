@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import articles.Article;
+import exception.LocationImpossibleException;
 
 import static main.Magasin.dateToString;
 
@@ -32,15 +33,20 @@ public class Location {
      * @param dateFin représente la date de fin de la location
      * @param articles la Hasmap d'articles loués : pair : <Article loué, nombre loué>
      * @param client Le client qui loue ces articles
-     * @param montant montant total de la location
      */
-    public Location(Date dateDebut, Date dateFin, HashMap<Article, Integer> articles, Client client, double montant) {
+    public Location(Date dateDebut, Date dateFin, HashMap<Article, Integer> articles, Client client) throws LocationImpossibleException {
+        if(dateDebut.after(dateFin)){
+            throw new LocationImpossibleException("Date de début de location doit être avant date de fin de location");
+        }
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.articles = articles;
         this.client = client;
-        this.montant = montant;
         this.isArchived = false;
+        this.montant = 0.0;
+        for(Article a : articles.keySet()){
+            this.montant = this.montant + (a.getPrix_j()*articles.get(a));
+        }
     }
 
     /**
@@ -56,7 +62,7 @@ public class Location {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String s = "\nLocation : \nLocation du : " + startDate + " jusqu'au " + endDate + "\nMontant de la location : " + this.montant + " € \nListe des articles loués : ";
+        String s = "==============Location============== \nLocation du : " + startDate + " jusqu'au " + endDate + "\nMontant de la location : " + this.montant + " € \nListe des articles loués : ";
         for (Article a : articles.keySet()) {
             s += a.toString();
             s += " nombre d'articles loués : " + this.articles.get(a) + "\n";

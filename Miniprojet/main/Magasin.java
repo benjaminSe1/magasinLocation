@@ -36,9 +36,10 @@ public class Magasin {
     /**
      * Constructor
      * Constructeur de la classe Magasin. On le construit à partir d'une liste d'articles disponible ou non. Ces articles seront dispatchés dans les listes articlesDispo et articlesNonDispo
-     * @param nom - Le nom du magasin
+     *
+     * @param nom      - Le nom du magasin
      * @param articles - La liste des articles du magasin
-     * @param archive - L'archive du magasin
+     * @param archive  - L'archive du magasin
      */
     public Magasin(String nom, ArrayList<Article> articles, Archive archive) {
         this.nom = nom;
@@ -63,6 +64,7 @@ public class Magasin {
 
     /**
      * Méthode permettant de tester la disponibilité d'une HashMap d'articles, correspondant au contenu d'une location
+     *
      * @param articles - HashMap d'articles dont ont veut tester la disponibilité
      * @return - Boolean : true si disponible, False sinon
      */
@@ -79,10 +81,11 @@ public class Magasin {
 
     /**
      * Méthode qui permet d'effectuer une location. Elle créée l'objet location.
-     * @param articles - articles HashMap correspondant au contenu d'une location
+     *
+     * @param articles  - articles HashMap correspondant au contenu d'une location
      * @param dateDebut - date de début de la location
-     * @param dateFin - date de fin de la location
-     * @param client - client qui loue
+     * @param dateFin   - date de fin de la location
+     * @param client    - client qui loue
      * @return la location créée
      * @throws ArticleIndispoException
      */
@@ -90,23 +93,19 @@ public class Magasin {
         if (this.checkDispoLocation(articles)) {
             Date startDate = stringToDate(dateDebut);
             Date endDate = stringToDate(dateFin);
-            if (startDate.before(endDate)) {
-                double montant = 0.0;
-                for (Article a : articles.keySet()) {
-                    a.decrementeDispo(articles.get(a));
-                    montant += a.getPrix_j() * articles.get(a);
-                    this.majListeArticles(a);
-                }
-                Location loc = new Location(startDate, endDate, articles, client, montant);
-                this.locations.add(loc);
-                client.ajouteLocation(loc);
-                if (!this.clients.contains(client)) {
-                    this.clients.add(client);
-                }
-                return loc;
-            } else {
-                throw new LocationImpossibleException("Date de début de location doit être avant date de fin de location");
+
+            for (Article a : articles.keySet()) {
+                a.decrementeDispo(articles.get(a));
+                this.majListeArticles(a);
             }
+            Location loc = new Location(startDate, endDate, articles, client);
+            this.locations.add(loc);
+            client.ajouteLocation(loc);
+            if (!this.clients.contains(client)) {
+                this.clients.add(client);
+            }
+            return loc;
+
         } else {
             throw new ArticleIndispoException("Un des articles est indispo");
         }
@@ -114,6 +113,7 @@ public class Magasin {
 
     /**
      * Méthode qui permet de gérer la restitution des articles de la location
+     *
      * @param location la location qui est rendu au magasin
      */
     public void rend(Location location) {
@@ -128,6 +128,7 @@ public class Magasin {
 
     /**
      * Méthode qui met à jour les listes d'articles. En fonction de sa disponibilité, l'article est mit dans la bonne liste.
+     *
      * @param article L'article à mettre à jour.
      */
     public void majListeArticles(Article article) {
@@ -146,6 +147,7 @@ public class Magasin {
 
     /**
      * Méthode qui retourne la liste de charactère représentant tous les articles disponibles du magasin
+     *
      * @param filtre - filtre sur la recherche peut être compris parmis les valeurs de Magasin.filtres
      * @return String - retourne la liste de charactère représentant tous les articles disponibles du magasin
      */
@@ -166,6 +168,7 @@ public class Magasin {
 
     /**
      * Méthode qui affiche les locations pour un client donné
+     *
      * @param client - Client dont on souhaite connaitre les locations
      */
     public void afficheLocation(Client client) {
@@ -174,6 +177,7 @@ public class Magasin {
 
     /**
      * Méthode qui permet d'archiver une location
+     *
      * @param location - La location que l'on veut archiver
      */
     public void archive(Location location) {
@@ -181,6 +185,7 @@ public class Magasin {
 
     /**
      * Méthode permettant de vérifier si le filtre existe
+     *
      * @param filtre - Le filtre à vérifier
      * @return Boolean - : True si le filtre éxiste, false sinon
      */
@@ -196,6 +201,7 @@ public class Magasin {
 
     /**
      * Méthode permettant de prendre une date et de la transformer en string au format dd/MM/yyyy
+     *
      * @param date - La date à retourner en String
      * @return newDateString - La date en String
      * @throws ParseException
@@ -208,6 +214,7 @@ public class Magasin {
 
     /**
      * Méthode permettant de prendre une date et de la transformer en string au format dd/MM/yyyy
+     *
      * @param stringDate - La string à parser en date
      * @return date - La date parsée
      * @throws ParseException
