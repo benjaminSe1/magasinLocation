@@ -78,4 +78,12 @@ public class Client {
         }
         return prenom != null ? prenom.equals(client.prenom) : client.prenom == null;
     }
+
+    public Client getClient(String nom, String prenom){
+        if (this.getNom() == nom && this.getPrenom() == prenom) {
+            return this;
+        } else {
+            return null;
+        }
+    }
 }

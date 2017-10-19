@@ -26,7 +26,6 @@ public class Magasin {
     private Archive archive;
     private ArrayList<Location> locations;
     private ArrayList<Client> clients;
-
     public static final String[] filtres = {"refCroiss", "refDecroiss", "prixCroiss", "prixDecroiss", "marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
 
     /**
@@ -264,25 +263,19 @@ public class Magasin {
     }
 
     public ArrayList<Client> getClients() {
-        return clients;
+        return this.clients;
     }
 
-    public boolean existeClient(String nom, String prenom){
-        boolean existe = false;
-        Client client = null;
-        
+    /**
+     * Méthode qui permet de savoir si un client existe à partir de son nom et de son prenom
+     * @param nom Le nom du client
+     * @param prenom Le prenom du client
+     * @return true si le client existe, false si le client n'éxiste pas
+     */
+    public boolean existeClient(String nom, String prenom) {
         for(Client c : this.getClients()){
-            if(c.getNom() == nom && c.getPrenom() == prenom){
-                existe = true;
-                client = c;        
-            }
-            else existe = false;
-        }
-        
-        if(existe){
-            for(Client c : this.getClients()){
-                if(c.equals(client)) return true;
-                else return false;
+            if(c.getClient(nom, prenom) != null){
+                return true;
             }
         }
         return false;
