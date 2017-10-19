@@ -195,10 +195,8 @@ public class Magasin {
     }
 
     /**Méthode qui permet d'archiver des locations pour moins donné
-     *
-     * @throws ParseException
      */
-    public void archiveMois(int mois) throws ParseException {
+    public void archiveMois(int mois) {
         for (Location loc : this.locations) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(loc.getDateFin());
