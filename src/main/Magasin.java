@@ -238,8 +238,7 @@ public class Magasin {
      */
     public static String dateToString(Date date) throws ParseException {
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        String newDateString = format.format(date);
-        return newDateString;
+        return format.format(date);
     }
 
     /**
@@ -251,8 +250,7 @@ public class Magasin {
      */
     public static Date stringToDate(String stringDate) throws ParseException {
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = format.parse(stringDate);
-        return date;
+        return format.parse(stringDate);
     }
 
     /**
