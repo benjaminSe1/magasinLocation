@@ -35,7 +35,7 @@ public class Article {
      * @return String - L'affichage d'un article sous forme de String.
      */
     public String toString() {
-        return "Référence article : " + this.reference + ", Marque : " + this.marque + ", Prix/jour : " + this.prix_j + ", Nombre d'articles disponibles : " + this.nbDispo;
+        return "Référence article : " + this.reference + ", Marque : " + this.marque + ", Modèle : " + this.modele + ", Prix/jour : " + this.prix_j + ", Nombre d'articles disponibles : " + this.nbDispo;
     }
 
     /**

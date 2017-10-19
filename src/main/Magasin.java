@@ -26,6 +26,7 @@ public class Magasin {
     private Archive archive;
     private ArrayList<Location> locations;
     private ArrayList<Client> clients;
+
     public static final String[] filtres = {"refCroiss", "refDecroiss", "prixCroiss", "prixDecroiss", "marqueCroiss", "marqueDecroiss", "modeleCroiss", "modeleDecroiss"};
 
     /**
@@ -166,14 +167,13 @@ public class Magasin {
 
     /**
      * Méthode qui retourne la liste de charactère représentant tous les articles disponibles du magasin
-     *
      * @param filtre - filtre sur la recherche peut être compris parmis les valeurs de Magasin.filtres
      * @return String - retourne la liste de charactère représentant tous les articles disponibles du magasin
      */
-    public String afficheArticle(String filtre) {
+    public void afficheArticle(String filtre) {
         //exception
         if (!Magasin.checkFiltre(filtre)) {
-            return "Mauvais filtre";
+            System.out.println("Mauvais filtre");
         }
         articlesDispos.sort(new ArticleComparator(filtre));
         String res = "";
@@ -182,7 +182,7 @@ public class Magasin {
             res += it.next().toString();
             res += '\n';
         }
-        return res;
+        System.out.println(res);
     }
 
     /**
@@ -260,5 +260,30 @@ public class Magasin {
             }
         }
         return res;
+    }
+
+    public ArrayList<Client> getClients() {
+        return clients;
+    }
+
+    public boolean existeClient(String nom, String prenom){
+        boolean existe = false;
+        Client client = null;
+        
+        for(Client c : this.getClients()){
+            if(c.getNom() == nom && c.getPrenom() == prenom){
+                existe = true;
+                client = c;        
+            }
+            else existe = false;
+        }
+        
+        if(existe){
+            for(Client c : this.getClients()){
+                if(c.equals(client)) return true;
+                else return false;
+            }
+        }
+        return false;
     }
 }

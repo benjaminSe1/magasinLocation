@@ -55,4 +55,27 @@ public class Client {
         System.out.println("Client : " + this.nom + " " + this.prenom);
         System.out.println("Liste des locations du client : " + locations.toString());
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        final Client client = (Client) o;
+        if (nom != null ? !nom.equals(client.nom) : client.nom != null) {
+            return false;
+        }
+        return prenom != null ? prenom.equals(client.prenom) : client.prenom == null;
+    }
 }
