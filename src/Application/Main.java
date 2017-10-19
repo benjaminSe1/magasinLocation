@@ -18,6 +18,7 @@ import main.Location;
 import main.Magasin;
 
 /**
+ * Classe principale permettant de tester notre application.
  * Created by Sejuapig on 19/10/2017.
  */
 public class Main {
@@ -80,7 +81,7 @@ public class Main {
                     clearScreen();
                     System.out.println("_________________________________________");
                     System.out.println("| Veuillez choisir comment afficher     |" +
-                        "\n| l'ensemble des articles :             |");
+                                     "\n| l'ensemble des articles :             |");
                     System.out.println("\n| 1 : Réference Croissante               | " +
                                         "\n| 2 : Réference Décroissante            | " +
                                         "\n| 3 : Modèle Croissant                  | " +
@@ -139,7 +140,7 @@ public class Main {
                     String nom = scanner.next();
                     System.out.println("Entrer le prenom du client : ");
                     String prenom = scanner.next();
-                    if(m1.existeClient(nom, prenom) == false){
+                    if(!m1.existeClient(nom, prenom)){
                         System.out.println("Le client n'a jamais effectué de location dans le magasin.");
                     }
                     break;
@@ -172,7 +173,7 @@ public class Main {
                 case 6:
                     clearScreen();
                     System.out.println("_________________________________________");
-                    System.out.println("|               Aurevoir                |");
+                    System.out.println("|               Au revoir                |");
                     System.out.println("_________________________________________");
                     res = false;
                     break;
@@ -193,12 +194,12 @@ public class Main {
                     System.out.println("\n");
                     //m1.archiveLoc();
                     System.out.println("\n");
-                    m1.getMontantPeriode("2017-10-10", "2018-01-10");
+                    System.out.println(m1.getMontantPeriode("10/10/2017", "01/10/2018"));
             }
         }
     }
 
-    public static void clearScreen(){
+    private static void clearScreen(){
         System.out.flush();
     }
 }

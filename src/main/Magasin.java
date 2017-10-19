@@ -206,6 +206,7 @@ public class Magasin {
                 archive.archiver(loc);
             }
         }
+        System.out.println("L'archive a bien été créée ou mise à jour.");
     }
 
     /**
