@@ -36,8 +36,11 @@ public class Archive {
         if (!fichier.exists()) {
             try {
                 //Si le dossier n'existe pas, on le créé
-                if(new File("ArchiveLoc/").exists());
-                else new File("ArchiveLoc/").mkdir();
+                if (new File("ArchiveLoc/").exists()) {
+                    ;
+                } else {
+                    new File("ArchiveLoc/").mkdir();
+                }
                 //On créé le fichier d'archive
                 fichier.createNewFile();
             } catch (IOException e) {

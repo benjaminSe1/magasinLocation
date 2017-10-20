@@ -199,7 +199,7 @@ public class Magasin {
     public void archiveMois(int mois) {
         boolean isChange = false;
         for (Location loc : this.locations) {
-            if(!loc.getIsArchived()) {
+            if (!loc.getIsArchived()) {
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(loc.getDateFin());
                 int moisLoc = cal.get(Calendar.MONTH);
@@ -210,8 +210,11 @@ public class Magasin {
                 }
             }
         }
-        if(isChange)System.out.println("L'archive a bien été créée ou mise à jour.");
-        else System.out.println("Aucun changement effectué");
+        if (isChange) {
+            System.out.println("L'archive a bien été créée ou mise à jour.");
+        } else {
+            System.out.println("Aucun changement effectué");
+        }
     }
 
     /**
@@ -288,8 +291,8 @@ public class Magasin {
      * @return true si le client existe, false si le client n'éxiste pas
      */
     public boolean existeClient(String nom, String prenom) {
-        for(Client c : this.getClients()){
-            if(c.getClient(nom, prenom) != null){
+        for (Client c : this.getClients()) {
+            if (c.getClient(nom, prenom) != null) {
                 return true;
             }
         }
@@ -304,8 +307,8 @@ public class Magasin {
      */
     public Client getClient(String nom, String prenom) {
         Client client = null;
-        for(Client c : this.getClients()){
-            if(c.getClient(nom, prenom) != null){
+        for (Client c : this.getClients()) {
+            if (c.getClient(nom, prenom) != null) {
                 client = c.getClient(nom, prenom);
             }
         }

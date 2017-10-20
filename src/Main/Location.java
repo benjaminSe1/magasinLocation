@@ -169,7 +169,7 @@ public class Location {
      * Méthode permettant de savoir si une location est déjà archivée ou non
      * @return Boolean - True si la location est archivée, false sinon
      */
-    public boolean getIsArchived(){
+    public boolean getIsArchived() {
         return this.isArchived;
     }
 }

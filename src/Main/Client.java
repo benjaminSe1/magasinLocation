@@ -98,7 +98,7 @@ public class Client {
      * @param prenom - Le prénom du client recherché
      * @return Client - Le client recherché
      */
-    public Client getClient(String nom, String prenom){
+    public Client getClient(String nom, String prenom) {
         if (this.getNom().equals(nom) && this.getPrenom().equals(prenom)) {
             return this;
         } else {
