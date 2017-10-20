@@ -58,7 +58,7 @@ public class Archive {
             for (String line : lines) {
                 write_file.writeUTF(line);
             }
-            loc.isArchived();
+            loc.setArchived();
             write_file.close();
         } catch (IOException e) {
             System.out.println("Ce fichier n'existe pas ou il est impossible d'écrire à l'intérieur.\n");

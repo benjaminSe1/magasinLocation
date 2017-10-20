@@ -28,24 +28,31 @@ public class Main {
 
     public static void main(String[] args) throws ParseException, ArticleIndispoException, LocationImpossibleException {
         boolean res = true;
+
+        //Création de trois nouveaux clients
         Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05");
         Client c2 = new Client("Abdelaziz", "Mathis", "3 Rue Maréchal Joffre", "01 02 03 04 05");
         Client c3 = new Client("Chouin", "Nicolas", "3 Rue Maréchal Joffre", "01 02 03 04 05");
 
+        //Création d'une liste d'articles
         ArrayList<Article> articlesDispo = new ArrayList<Article>();
+        //Création de cinq articles
         Article a1 = new LitMedicalise("ref1", "marque1", "modele1", 1.0, 5);
         Article a2 = new MatelasAir("ref2", "marque2", "modele2", 2.0, 5);
         Article a3 = new SouleveMalade("ref3", "marque3", "modele3", 3.0, 5);
         Article a4 = new FauteuilRoulant("ref4", "marque4", "modele4", 4.0, 5);
         Article a5 = new TableAlite("ref5", "marque5", "modele5", 5.0, 5);
+        //Ajout des articles dans la liste d'articles
         articlesDispo.add(a1);
         articlesDispo.add(a2);
         articlesDispo.add(a3);
         articlesDispo.add(a4);
         articlesDispo.add(a5);
 
+        //Création d'un magasin
         Magasin m1 = new Magasin("monMag", articlesDispo);
 
+        //Création d'HashMaps contenant des articles et le nombre de cet article loués
         HashMap<Article, Integer> tabLoc1 = new HashMap<>();
         tabLoc1.put(a1, 1);
 
@@ -55,6 +62,7 @@ public class Main {
         HashMap<Article, Integer> tabLoc3 = new HashMap<>();
         tabLoc3.put(a3, 1);
 
+        //Création des dates de début et fin de locations
         Date dateDebutL1 = stringToDate("17/10/2017");
         Date dateFinL1 = stringToDate("18/10/2017");
 
@@ -64,32 +72,39 @@ public class Main {
         Date dateDebutL3 = stringToDate("21/10/2017");
         Date dateFinL3 = stringToDate("22/10/2017");
 
+        //Création de trois locations (Une pour chaque client)
         Location l1 = new Location(dateDebutL1, dateFinL1, tabLoc1, c1);
         Location l2 = new Location(dateDebutL2, dateFinL2, tabLoc2, c2);
         Location l3 = new Location(dateDebutL3, dateFinL3, tabLoc3, c3);
 
 
+        //On demande à l'utilisateur de choisir un chiffre de 1 à 7
         Scanner scanner = new Scanner(System.in);
         while(res){
+            //Affichage des choix de l'utilisateur
             System.out.println("_________________________________________");
             System.out.println("|       Pour effectuer un action,       |");
-            System.out.println("| Entrez un numéro  :                   |");
+            System.out.println("| Veuillez entrer un numéro  :          |");
             System.out.println("| 1: Afficher l'ensemble des articles   |");
             System.out.println("| 2: Enregistrer les locations          |");
             System.out.println("| 3: Afficher les locations d'un client |");
-            System.out.println("| 4: Archiver les locations dans .loc   |");
-            System.out.println("| 5: Calculer les recettes              |");
-            System.out.println("| 6: Quitter le terminal des requetes   |");
+            System.out.println("| 4: Archiver les locations dans le .loc|");
+            System.out.println("| 5: Calculer les recettes d'une période|");
+            System.out.println("| 6: Quitter l'application              |");
             System.out.println("| 7: Lancement du cas de test préfait   |");
             System.out.println("_________________________________________");
 
+            //Récupération du choix de l'utilisateur
             int choix = scanner.nextInt();
+            //Si le choix n'est pas entre 1 et 7, on notifie l'erreur de l'utilisateur
             if(choix < 1 || choix > 7 ){
                 flushScreen();
                 System.out.println("Erreur de choix !");
             }
+            //Pour chaque choix de l'utilisateur, on effectue une action différente
             switch(choix){
                 case 1:
+                    //Le cas 1 demande par quel moyen l'utilisateur veut trier l'affichage des articles
                     flushScreen();
                     System.out.println("_________________________________________");
                     System.out.println("| Veuillez choisir comment afficher     |" +
@@ -152,6 +167,7 @@ public class Main {
                     String nom = scanner.next();
                     System.out.println("Entrer le prenom du client : ");
                     String prenom = scanner.next();
+                    //Si le client n'existe pas
                     if(!m1.existeClient(nom, prenom)){
                         System.out.println("Le client n'a jamais effectué de location dans le magasin.");
                     } else {
@@ -193,8 +209,10 @@ public class Main {
                     break;
                 case 7:
                     flushScreen();
+                    //Cas de test automatique
                     System.out.println("Lancement du cas de test");
                     System.out.println("Affichage de la liste des articles du magasin : \n");
+                    //On met le filtre de recherche d'articles à marque décroissantes.
                     String articleFiltre = "marqueCroiss";
                     m1.afficheArticle(articleFiltre);
                     System.out.println("\n");
@@ -222,6 +240,9 @@ public class Main {
         }
     }
 
+    /**
+     * Méthode permettant de supprimer le contenu de la sortie standard, ici le terminal.
+     */
     private static void flushScreen(){
         System.out.flush();
     }

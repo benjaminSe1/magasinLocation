@@ -162,10 +162,17 @@ public class Location {
         return this;
     }
 
-    public void isArchived() {
+    /**
+     * Méthode permettant de mettre une location comme archivée.
+     */
+    public void setArchived() {
         this.isArchived = true;
     }
 
+    /**
+     * Méthode permettant de savoir si une location est déjà archivée ou non
+     * @return Boolean - True si la location est archivée, false sinon
+     */
     public boolean getIsArchived(){
         return this.isArchived;
     }

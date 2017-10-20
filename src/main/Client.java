@@ -56,14 +56,27 @@ public class Client {
         System.out.println("Liste des locations du client : \n" + locations.toString());
     }
 
+    /**
+     * Méthode accesseur du nom
+     * @return String - Le nom
+     */
     public String getNom() {
         return nom;
     }
 
+    /**
+     * Méthode accesseur du prénom
+     * @return String - Le prénom
+     */
     public String getPrenom() {
         return prenom;
     }
 
+    /**
+     * Méthode permettant de comparer deux Clients
+     * @param o - Le client à comparer au client courrant
+     * @return - True si ils sont égaux, faux sinon.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -79,6 +92,12 @@ public class Client {
         return prenom != null ? prenom.equals(client.prenom) : client.prenom == null;
     }
 
+    /**
+     * Méthode permettant de récupérer un client à partir de son nom et son prénom
+     * @param nom - Le nom du client recherché
+     * @param prenom - Le prénom du client recherché
+     * @return Client - Le client recherché
+     */
     public Client getClient(String nom, String prenom){
         if (this.getNom().equals(nom) && this.getPrenom().equals(prenom)) {
             return this;
