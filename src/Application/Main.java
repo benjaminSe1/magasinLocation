@@ -85,12 +85,12 @@ public class Main {
 
             int choix = scanner.nextInt();
             if(choix < 1 || choix > 7 ){
-                clearScreen();
+                flushScreen();
                 System.out.println("Erreur de choix !");
             }
             switch(choix){
                 case 1:
-                    clearScreen();
+                    flushScreen();
                     System.out.println("_________________________________________");
                     System.out.println("| Veuillez choisir comment afficher     |" +
                                      "\n| l'ensemble des articles :             |");
@@ -131,17 +131,17 @@ public class Main {
                             filtre = "prixDecroiss";
                             break;
                     }
-                    clearScreen();
+                    flushScreen();
                     m1.afficheArticle(filtre);
                     break;
                 case 2:
-                    clearScreen();
+                    flushScreen();
                     m1.loue(l1);
                     m1.loue(l2);
                     m1.loue(l3);
                     break;
                 case 3:
-                    clearScreen();
+                    flushScreen();
 
                     System.out.print("Listes des clients louant actuellement : \n"); //Aide pour retenir les clients
                     for (Client c : m1.getClients()){
@@ -159,20 +159,20 @@ public class Main {
                     }
                     break;
                 case 4:
-                    clearScreen();
+                    flushScreen();
                     System.out.println("Veuillez saisir le mois dont vous souhaitez archiver les locations" +
                         "\nLe mois est à renseigner selon un numéro" +
                         "\nLe 1 étant Janvier, le 12 Décembre");
                     int choixMois = scanner.nextInt();
                     if(choixMois < 1 || choixMois > 12 ){
-                        clearScreen();
+                        flushScreen();
                         System.out.println("Erreur de choix !");
                     } else{
                         m1.archiveMois(choixMois);
                     }
                     break;
                 case 5:
-                    clearScreen();
+                    flushScreen();
                     System.out.println("Veuillez écrire les dates suivantes de cette facon :" +
                         "\nJJ/MM/YYYY" +
                         "\nYYYY L'annee exemple : 2017" +
@@ -185,35 +185,44 @@ public class Main {
                     System.out.println(m1.getMontantPeriode(choixDate1, choixDate2));
                     break;
                 case 6:
-                    clearScreen();
+                    flushScreen();
                     System.out.println("_________________________________________");
                     System.out.println("|               Au revoir                |");
                     System.out.println("_________________________________________");
                     res = false;
                     break;
                 case 7:
-                    clearScreen();
+                    flushScreen();
                     System.out.println("Lancement du cas de test");
-                    //m1.afficheEnsArticle(1);
+                    System.out.println("Affichage de la liste des articles du magasin : \n");
+                    String articleFiltre = "marqueCroiss";
+                    m1.afficheArticle(articleFiltre);
                     System.out.println("\n");
+                    System.out.println("Enregistrement des locations.");
                     m1.loue(l1);
                     m1.loue(l2);
                     m1.loue(l3);
                     System.out.println("\n");
-                    m1.existeClient(c1.getNom(), c1.getPrenom());
+                    System.out.println("Affichage des locations pour le client Seche Benjamin : \n");
+                    String clientNom = "Seche";
+                    String clientPrenom = "Benjamin";
+                    m1.getClient(clientNom, clientPrenom).afficheLocation();
                     System.out.println("\n");
-                    m1.existeClient(c2.getNom(), c2.getPrenom());
+                    System.out.println("Archivage des locations du mois d'octobre : \n");
+                    int testChoixMois = 10;
+                    m1.archiveMois(testChoixMois);
                     System.out.println("\n");
-                    m1.existeClient(c3.getNom(), c3.getPrenom());
+                    System.out.println("Calcul des recettes pour la période du 10 au 23 octobre : \n");
+                    System.out.println(m1.getMontantPeriode("10/10/2017", "23/10/2018"));
                     System.out.println("\n");
-                    //m1.archiveLoc();
-                    System.out.println("\n");
-                    System.out.println(m1.getMontantPeriode("10/10/2017", "01/10/2018"));
+                    System.out.println("Fin du cas de test.");
+                    res = false;
+                    break;
             }
         }
     }
 
-    private static void clearScreen(){
+    private static void flushScreen(){
         System.out.flush();
     }
 }
