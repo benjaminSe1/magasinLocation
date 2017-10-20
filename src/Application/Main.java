@@ -6,19 +6,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import article.Article;
-import article.FauteuilRoulant;
-import article.LitMedicalise;
-import article.MatelasAir;
-import article.SouleveMalade;
-import article.TableAlite;
-import exception.ArticleIndispoException;
-import exception.LocationImpossibleException;
-import main.Client;
-import main.Location;
-import main.Magasin;
+import Article.Article;
+import Article.FauteuilRoulant;
+import Article.LitMedicalise;
+import Article.MatelasAir;
+import Article.SouleveMalade;
+import Article.TableAlite;
+import Exception.ArticleIndispoException;
+import Exception.LocationImpossibleException;
+import Main.Client;
+import Main.Location;
+import Main.Magasin;
 
-import static main.Magasin.stringToDate;
+import static Main.Magasin.stringToDate;
 
 /**
  * Classe principale permettant de tester notre application.
