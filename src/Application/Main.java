@@ -27,7 +27,7 @@ import static main.Magasin.stringToDate;
 public class Main {
 
     public static void main(String[] args) throws ParseException, ArticleIndispoException, LocationImpossibleException {
-        boolean res = true;
+        boolean run = true;
 
         //Création de trois nouveaux clients
         Client c1 = new Client("Seche", "Benjamin", "3 Rue Maréchal Joffre", "01 02 03 04 05");
@@ -80,19 +80,19 @@ public class Main {
 
         //On demande à l'utilisateur de choisir un chiffre de 1 à 7
         Scanner scanner = new Scanner(System.in);
-        while(res){
+        while(run){
             //Affichage des choix de l'utilisateur
-            System.out.println("_________________________________________");
-            System.out.println("|       Pour effectuer un action,       |");
-            System.out.println("| Veuillez entrer un numéro  :          |");
-            System.out.println("| 1: Afficher l'ensemble des articles   |");
-            System.out.println("| 2: Enregistrer les locations          |");
-            System.out.println("| 3: Afficher les locations d'un client |");
-            System.out.println("| 4: Archiver les locations dans le .loc|");
-            System.out.println("| 5: Calculer les recettes d'une période|");
-            System.out.println("| 6: Quitter l'application              |");
-            System.out.println("| 7: Lancement du cas de test préfait   |");
-            System.out.println("_________________________________________");
+            System.out.println("__________________________________________");
+            System.out.println("|       Pour effectuer un action,        |");
+            System.out.println("| Veuillez entrer un numéro  :           |");
+            System.out.println("| 1: Afficher l'ensemble des articles    |");
+            System.out.println("| 2: Louer les articles préféfinis       |");
+            System.out.println("| 3: Afficher les locations d'un client  |");
+            System.out.println("| 4: Archiver les locations dans le .loc |");
+            System.out.println("| 5: Calculer les recettes d'une période |");
+            System.out.println("| 6: Quitter l'application               |");
+            System.out.println("| 7: Lancement du cas de test préfait    |");
+            System.out.println("__________________________________________");
 
             //Récupération du choix de l'utilisateur
             int choix = scanner.nextInt();
@@ -190,8 +190,8 @@ public class Main {
                 case 5:
                     flushScreen();
                     System.out.println("Veuillez écrire les dates suivantes de cette facon :" +
-                        "\nJJ/MM/YYYY" +
-                        "\nYYYY L'annee exemple : 2017" +
+                        "\nJJ/MM/AAAA" +
+                        "\nAAAA L'annee exemple : 2017" +
                         "\nMM Le mois exemple : 11" +
                         "\nJJ Le jour exemple : 10");
                     System.out.println("Entrez la date de debut : ");
@@ -205,7 +205,7 @@ public class Main {
                     System.out.println("_________________________________________");
                     System.out.println("|               Au revoir                |");
                     System.out.println("_________________________________________");
-                    res = false;
+                    run = false;
                     break;
                 case 7:
                     flushScreen();
@@ -234,7 +234,7 @@ public class Main {
                     System.out.println(m1.getMontantPeriode("10/10/2017", "23/10/2018"));
                     System.out.println("\n");
                     System.out.println("Fin du cas de test.");
-                    res = false;
+                    run = false;
                     break;
             }
         }
