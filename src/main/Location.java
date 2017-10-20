@@ -127,9 +127,8 @@ public class Location {
      *
      * @param dateDebut nouvelle valeur de l'attribut
      */
-    public Location setDateDebut(Date dateDebut) {
+    public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
-        return this;
     }
 
     /**
@@ -137,9 +136,8 @@ public class Location {
      *
      * @param dateFin nouvelle valeur de l'attribut
      */
-    public Location setDateFin(Date dateFin) {
+    public void setDateFin(Date dateFin) {
         this.dateFin = dateFin;
-        return this;
     }
 
     /**
@@ -147,9 +145,8 @@ public class Location {
      *
      * @param client nouvelle valeur de l'attribut
      */
-    public Location setClient(Client client) {
+    public void setClient(Client client) {
         this.client = client;
-        return this;
     }
 
     /**
@@ -157,9 +154,8 @@ public class Location {
      *
      * @param montant nouvelle valeur de l'attribut
      */
-    public Location setMontant(double montant) {
+    public void setMontant(double montant) {
         this.montant = montant;
-        return this;
     }
 
     /**

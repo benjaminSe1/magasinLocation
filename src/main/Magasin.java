@@ -167,7 +167,6 @@ public class Magasin {
     /**
      * Méthode qui retourne la liste de charactère représentant tous les articles disponibles du magasin
      * @param filtre - filtre sur la recherche peut être compris parmis les valeurs de Magasin.filtres
-     * @return String - retourne la liste de charactère représentant tous les articles disponibles du magasin
      */
     public void afficheArticle(String filtre) {
         //exception
@@ -193,7 +192,9 @@ public class Magasin {
         client.afficheLocation();
     }
 
-    /**Méthode qui permet d'archiver des locations pour moins donné
+    /**
+     * Méthode qui permet d'archiver des locations pour mois donné
+     * @param mois - Le mois choisi
      */
     public void archiveMois(int mois) {
         boolean isChange = false;

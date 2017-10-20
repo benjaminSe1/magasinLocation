@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 
 /**
- * Méthode qui permet de réprensenter un client du magasin
+ * Méthode qui permet de reprensenter un client du magasin
  * Created by E149769S on 19/09/17.
  */
 public class Client {
